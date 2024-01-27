@@ -35,7 +35,7 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
 
   setColors() {
     // thumbColor = (value ? (widget.thumbColor ?? Colors.red) : (widget.inactiveThumbColor ?? Colors.red));
-    thumbColor = (value ? (widget.thumbColor ?? Colors.red) : (widget.inactiveThumbColor ?? widget.thumbColor) ?? Colors.red)!;
+    thumbColor = (value ? (widget.thumbColor ?? Colors.red) : (widget.inactiveThumbColor ?? widget.thumbColor) ?? Colors.red);
     backgroundColor = (value ? (widget.backgroundColor ?? Colors.grey[850]) : (widget.inactiveBackgroundColor ?? widget.backgroundColor) ?? Colors.grey[850])!;
     outlineColor = (value ? (widget.outlineColor ?? Colors.grey[850]) : (widget.inactiveOutlineColor ?? widget.outlineColor) ?? Colors.grey[850])!;
     // outlineColor = (value ? (widget.outlineColor ?? Colors.grey[850]) : (widget.inactiveOutlineColor ?? Colors.grey[850]))!;

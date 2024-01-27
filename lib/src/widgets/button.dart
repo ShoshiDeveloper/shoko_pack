@@ -48,17 +48,20 @@ class ShokoUIButton extends StatelessWidget {
             width: 1,
             color: color ?? Colors.grey[850]!
           ) : null,
-          // boxShadow: TODO
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if(prefix != null) prefix!,
-            if(prefix != null) const SizedBox(width: 8),
+            if(prefix != null) ... [
+              prefix!,
+              const SizedBox(width: 8),
+            ] ,
             child,
-            if(suffix != null && isFullWidth) const Expanded(child: SizedBox()),
-            if(suffix != null) const SizedBox(width: 8),
-            if(suffix != null) suffix!
+            if(suffix != null) ... [
+              if(isFullWidth) const Expanded(child: SizedBox()),
+              const SizedBox(width: 8),
+              suffix!
+            ]
           ]
         ),
       ),
