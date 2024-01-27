@@ -31,14 +31,24 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      controller: controller,
-      children: const [
-        ButtonsPage(),
-        SwitchPage(),
-        RadioPage(),
-        TextFieldsPage()
-      ],
+    return ShokoUIThemeWidget(
+      shokoUITheme: const ShokoUITheme(
+        switchTheme: ShokoUIThemeSwitch(
+          backgroundColor: Colors.green,
+          inactiveBackgroundColor: Colors.red,
+          thumbColor: Colors.black,
+          inactiveThumbColor: Colors.white
+        )
+      ),
+      child: PageView(
+        controller: controller,
+        children: const [
+          ButtonsPage(),
+          SwitchPage(),
+          RadioPage(),
+          TextFieldsPage()
+        ],
+      )
     );
   }
 }
@@ -121,6 +131,15 @@ class _SwitchPageState extends State<SwitchPage> {
                   });
                 },
                 value: s
+              ),
+              ShokoUISwitch(
+                insidePadding: 6,
+                onChange: (newValue) {
+                  setState(() {
+                    s = newValue;
+                  });
+                },
+                value: s
               )
             ]
           )
@@ -144,13 +163,15 @@ class _RadioPageState extends State<RadioPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          width: MediaQuery.of(context).size.width,
           child: ShokoUIRadio(
             value: s,
             childPosition: ShokoUIRadioChildPosition.left,
-            child: Text('Включить музыку'),
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: const Text('Enable music'),
             onChange: (newValue) {
-              print(newValue);
               setState(() {
                 s = newValue;
               });
@@ -175,22 +196,18 @@ class TextFieldsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ShokoUITextField(
-                // validator: (value) {
-                //   return value == '12';
-                // },
                 width: 150,
                 errorColor: Colors.red,
                 focusColor: Colors.blue,
                 errorText: 'Какая-та хуита',
-                // errorWidget: Text('huy'),
                 isError: false,
-                controller: TextEditingController(text: 'huynya')
+                controller: TextEditingController(text: 'Something')
               ),
               const SizedBox(height: 8),
               ShokoUITextField(
                 isEnabled: false,
                 disableColor: Colors.grey,
-                controller: TextEditingController(text: 'Ebat`')
+                controller: TextEditingController(text: 'Something')
               ),
             ]
           )

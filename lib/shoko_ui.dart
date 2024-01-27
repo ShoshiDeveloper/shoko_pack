@@ -6,3 +6,4 @@ export 'src/widgets/button.dart';
 export 'src/widgets/switch.dart';
 export 'src/widgets/radio.dart';
 export 'src/widgets/textfield.dart';
+export 'src/theme/shoko_ui_theme.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shoko_ui/shoko_ui.dart';
 
 class ShokoUISwitch extends StatefulWidget {
   final Function(bool newValue)? onChange;
@@ -33,16 +34,19 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
   late Color backgroundColor;
   late Color outlineColor;
 
+  late ShokoUIThemeSwitch? theme;
+
   setColors() {
     // thumbColor = (value ? (widget.thumbColor ?? Colors.red) : (widget.inactiveThumbColor ?? Colors.red));
-    thumbColor = (value ? (widget.thumbColor ?? Colors.red) : (widget.inactiveThumbColor ?? widget.thumbColor) ?? Colors.red);
-    backgroundColor = (value ? (widget.backgroundColor ?? Colors.grey[850]) : (widget.inactiveBackgroundColor ?? widget.backgroundColor) ?? Colors.grey[850])!;
-    outlineColor = (value ? (widget.outlineColor ?? Colors.grey[850]) : (widget.inactiveOutlineColor ?? widget.outlineColor) ?? Colors.grey[850])!;
+    thumbColor = (value ? ((widget.thumbColor ?? theme?.thumbColor) ?? Colors.red) : ((widget.inactiveThumbColor ?? theme?.inactiveThumbColor) ?? (widget.thumbColor ?? theme?.thumbColor)) ?? Colors.red);
+    backgroundColor = (value ? ((widget.backgroundColor ?? theme?.backgroundColor) ?? Colors.grey[850]) : ((widget.inactiveBackgroundColor ?? theme?.inactiveBackgroundColor) ?? (widget.backgroundColor ?? theme?.backgroundColor)) ?? Colors.grey[850])!;
+    outlineColor = (value ? ((widget.outlineColor ?? theme?.outlineColor) ?? Colors.grey[850]) : ((widget.inactiveOutlineColor ?? theme?.inactiveOutlineColor) ?? (widget.outlineColor ?? theme?.outlineColor)) ?? Colors.grey[850])!;
     // outlineColor = (value ? (widget.outlineColor ?? Colors.grey[850]) : (widget.inactiveOutlineColor ?? Colors.grey[850]))!;
   }
 
   @override
   void didUpdateWidget(covariant ShokoUISwitch oldWidget) {
+    theme = context.shokoTheme?.switchTheme;
     setState(() {
       value = widget.value;
     });
@@ -51,6 +55,7 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
 
   @override
   void initState() {
+    theme = context.shokoTheme?.switchTheme;
     value = widget.value;
     setColors();
     super.initState();

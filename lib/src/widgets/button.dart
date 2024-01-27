@@ -20,7 +20,7 @@ class ShokoUIButton extends StatelessWidget {
   final Widget? suffix;
 
 
-  final ShokoUIRadii radius;
+  final ShokoUIRadii? radius;
   final ShokoUIShadow? shadow;
 
   const ShokoUIButton({super.key,
@@ -41,12 +41,12 @@ class ShokoUIButton extends StatelessWidget {
         width: isFullWidth ? double.maxFinite : null,
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         decoration: BoxDecoration(
-          color: color ?? Colors.grey[850],
-          borderRadius: radius.get(),
-          boxShadow: shadow?.get(),
+          color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]),
+          borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()),
+          boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
           border: isOutline ? Border.all(
             width: 1,
-            color: color ?? Colors.grey[850]!
+            color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
           ) : null,
         ),
         child: Row(
