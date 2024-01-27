@@ -16,6 +16,8 @@ know whether this package might be useful for them.
 
 ## Features
 
+<img src="readme_img/Bongo-Jams.gif" alt="heh">
+
 TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
