@@ -1,3 +1,9 @@
+## 0.0.3
+Addendum in ShokoUIThemeSwitch: enableOutline, insidePadding;
+Addendum in ShokoUIThemeTextField: styles, borderWidth, width
+
+Addendum in TextField: label and labelTextStyle
+
 ## 0.0.2
 
 Addendum ShokoUIThemeWidget for global theme for other a shoko widget

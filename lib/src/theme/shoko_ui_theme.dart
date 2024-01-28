@@ -55,8 +55,22 @@ class ShokoUIThemeTextField {
   final Color? disableColor;
   final Color? focusColor;
   final Color? errorColor;
+
+  final EdgeInsets? insidePaddings;
   final ShokoUIRadii? radius;
-  const ShokoUIThemeTextField({this.enableColor, this.disableColor, this.focusColor, this.errorColor, this.radius});
+
+  final TextStyle? style;
+  final TextStyle? labelTextStyle;
+  
+  final double? borderWidth;
+  final double? width;
+  
+  const ShokoUIThemeTextField({
+    this.enableColor, this.disableColor, this.focusColor, this.errorColor,
+    this.insidePaddings, this.radius,
+    this.style, this.labelTextStyle,
+    this.borderWidth, this.width
+  });
 }
 
 class ShokoUIThemeSwitch {
@@ -66,5 +80,13 @@ class ShokoUIThemeSwitch {
   final Color? inactiveBackgroundColor;
   final Color? outlineColor;
   final Color? inactiveOutlineColor;
-  const ShokoUIThemeSwitch({this.thumbColor, this.inactiveThumbColor, this.backgroundColor, this.inactiveBackgroundColor, this.outlineColor, this.inactiveOutlineColor});
+
+  
+  final bool? enableOutline;
+  final double? insidePadding;
+
+  const ShokoUIThemeSwitch({
+    this.thumbColor, this.inactiveThumbColor, this.backgroundColor, this.inactiveBackgroundColor, this.outlineColor, this.inactiveOutlineColor,
+    this.enableOutline, this.insidePadding
+  });
 }

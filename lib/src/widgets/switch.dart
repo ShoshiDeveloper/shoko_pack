@@ -14,13 +14,13 @@ class ShokoUISwitch extends StatefulWidget {
   final Color? outlineColor;
   final Color? inactiveOutlineColor;
 
-  final bool enableOutline;
-  final double insidePadding;
+  final bool? enableOutline;
+  final double? insidePadding;
 
   const ShokoUISwitch({super.key,
     required this.value, this.onChange, this.width = 64,
     this.thumbColor, this.backgroundColor, this.outlineColor, this.inactiveThumbColor, this.inactiveBackgroundColor, this.inactiveOutlineColor,
-    this.enableOutline = false, this.insidePadding = 4
+    this.enableOutline, this.insidePadding
   });
 
   @override
@@ -79,14 +79,14 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
       child: Container(
         width: widget.width,
         height: widget.width/2,
-        padding: EdgeInsets.all(widget.insidePadding),
+        padding: EdgeInsets.all((widget.insidePadding ?? theme?.insidePadding) ?? 4),
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.circular(100),
-          border: !(widget.enableOutline) ? null : Border.all(
+          border: ((widget.enableOutline ?? theme?.enableOutline) ?? false) ? Border.all(
             width: 2,
             color: outlineColor
-          )
+          ) : null
         ),
         child: AnimatedContainer(
           margin: EdgeInsets.only(left: value ? widget.width/2 : 0, right: value ? 0 : widget.width/2),
