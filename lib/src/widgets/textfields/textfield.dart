@@ -30,6 +30,8 @@ class ShokoUITextField extends StatefulWidget {
 
   final double? borderWidth;
 
+  final TextInputType? keyboardType;
+
   final int? minSymbols;
   final int? maxSymbols;
   
@@ -42,6 +44,7 @@ class ShokoUITextField extends StatefulWidget {
     this.label, this.labelTextStyle,
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
     this.borderWidth,
+    this.keyboardType,
     this.minSymbols, this.maxSymbols
   });
 
@@ -117,6 +120,7 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               )
             ),
             child: EditableText(
+              keyboardType: widget.keyboardType,
               enableSuggestions: true,
               autocorrect: true,
               obscureText: widget.obscureText,

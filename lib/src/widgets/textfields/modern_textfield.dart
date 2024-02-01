@@ -100,7 +100,7 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
             decoration: BoxDecoration(
               borderRadius: ShokoUIRadii.mediumPlus.get(),
               border: Border.all(
-                width: 2,
+                width: 1,
                 color: (focusNode.hasFocus && widget.isEnabled ? (widget.focusColor ?? theme?.focusColor) : (widget.isEnabled ? (isError ? (widget.errorColor ?? theme?.errorColor) : (widget.enableColor ?? theme?.enableColor)) : (widget.disableColor ?? theme?.disableColor)) ?? Colors.black)!
               )
             ),

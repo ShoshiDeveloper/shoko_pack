@@ -67,6 +67,7 @@ class ButtonsPage extends StatelessWidget {
             runSpacing: 8,
             children: [
                ShokoUIButton(
+                // isOutline: true,
                 isFullWidth: true,
                 prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
                 suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
