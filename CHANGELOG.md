@@ -1,3 +1,7 @@
+## 0.0.6
+Addendum ModernTextField
+Modefied TextField and TextFieldTheme: obscure text, remove unnecessary
+Fix bugs
 ## 0.0.5+3
 Add keyboardType in textfield
 ## 0.0.5 + 1, 2
