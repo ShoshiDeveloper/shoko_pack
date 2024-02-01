@@ -108,7 +108,7 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
             width: (widget.width ?? theme?.width),
             padding: (widget.insidePaddings ?? theme?.insidePaddings) ?? const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              borderRadius: (widget.radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()),
+              borderRadius: (widget.radius?.get() ?? theme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
               border: Border.all(
                 width: (widget.borderWidth ?? theme?.borderWidth) ?? 2,
                 color: (focusNode.hasFocus && widget.isEnabled ? (widget.focusColor ?? theme?.focusColor) : (widget.isEnabled ? (isError ? (widget.errorColor ?? theme?.errorColor) : (widget.enableColor ?? theme?.enableColor)) : (widget.disableColor ?? theme?.disableColor))) ??Colors.grey[850]!

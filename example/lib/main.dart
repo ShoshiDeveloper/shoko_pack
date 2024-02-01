@@ -193,22 +193,17 @@ class TextFieldsPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ShokoUITextField(
-                width: 150,
+              const SizedBox(height: 45),
+              ShokoUIModernTextField(
                 errorColor: Colors.red,
                 focusColor: Colors.blue,
                 errorText: 'Какая-та хуита',
+                style: TextStyle(fontSize: 24, color: Colors.black),
                 isError: false,
-                controller: TextEditingController(text: 'Something')
-              ),
-              const SizedBox(height: 8),
-              ShokoUITextField(
-                isEnabled: false,
-                disableColor: Colors.grey,
-                controller: TextEditingController(text: 'Something')
-              ),
+                controller: TextEditingController(text: 'asdas')
+              )
             ]
           )
         )

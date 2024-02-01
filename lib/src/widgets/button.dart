@@ -27,7 +27,7 @@ class ShokoUIButton extends StatelessWidget {
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isFullWidth = false,
     required this.child, this.suffix, this.prefix,
-    this.radius = ShokoUIRadii.medium, this.shadow
+    this.radius, this.shadow
   });
 
   @override
@@ -42,7 +42,7 @@ class ShokoUIButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         decoration: BoxDecoration(
           color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]),
-          borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()),
+          borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
           boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
           border: isOutline ? Border.all(
             width: 1,

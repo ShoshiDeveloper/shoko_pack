@@ -121,7 +121,7 @@ packages:
       path: "C:/projects/shoko_ui"
       relative: false
     source: path
-    version: "0.0.1"
+    version: "0.0.3"
   sky_engine:
     dependency: transitive
     description: flutter
