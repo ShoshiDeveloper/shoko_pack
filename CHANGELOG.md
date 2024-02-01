@@ -1,3 +1,8 @@
+## 0.0.5+3
+Add keyboardType in textfield
+## 0.0.5 + 1, 2
+Fix button widget
+
 ## 0.0.3
 Addendum in ShokoUIThemeSwitch: enableOutline, insidePadding;
 Addendum in ShokoUIThemeTextField: styles, borderWidth, width

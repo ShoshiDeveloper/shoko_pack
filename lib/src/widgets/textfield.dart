@@ -30,6 +30,8 @@ class ShokoUITextField extends StatefulWidget {
   final double? borderWidth;
   final double? width;
 
+  final TextInputType? keyboardType;
+
   
   const ShokoUITextField({super.key,
     required this.controller, this.style,
@@ -39,7 +41,8 @@ class ShokoUITextField extends StatefulWidget {
     this.isError = false, this.errorText, this.errorWidget,
     this.label, this.labelTextStyle,
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
-    this.borderWidth, this.width
+    this.borderWidth, this.width,
+    this.keyboardType
   });
 
   @override
@@ -81,9 +84,6 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
       validatorResult = widget.validator!(value);
     }
 
-
-    // if (!validatorResult) {
-    // }
     setState(() {
       isError = !validatorResult;
     });
@@ -115,6 +115,7 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               )
             ),
             child: EditableText(
+              keyboardType: widget.keyboardType,
               onTapOutside: (event) => focusNode.unfocus(),
               onSubmitted: submit,
               // onEditingComplete: () => submit(value),

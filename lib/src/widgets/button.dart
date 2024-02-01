@@ -11,6 +11,7 @@ class ShokoUIButton extends StatelessWidget {
 
   final bool isOutline;
   final bool isFullWidth;
+  final bool isChildAtCenter;
 
   ///We recommend using it for text
   final Widget child;
@@ -25,23 +26,22 @@ class ShokoUIButton extends StatelessWidget {
 
   const ShokoUIButton({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
-    this.color, this.isOutline = false, this.isFullWidth = false,
+    this.color, this.isOutline = false, this.isFullWidth = false, this.isChildAtCenter = false,
     required this.child, this.suffix, this.prefix,
     this.radius = ShokoUIRadii.medium, this.shadow
   });
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       onDoubleTap: onDoubleTap,
-      onHover: onHover,
       onLongPress: onLongPress,
-      child: Ink(
+      child: Container(
         width: isFullWidth ? double.maxFinite : null,
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         decoration: BoxDecoration(
-          color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]),
+          color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
           borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()),
           boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
           border: isOutline ? Border.all(
@@ -49,8 +49,29 @@ class ShokoUIButton extends StatelessWidget {
             color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
           ) : null,
         ),
-        child: Row(
+        child: isChildAtCenter? Stack(
+          // alignment: Alignment.center,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if(prefix != null) ... [
+                  prefix!,
+                ] ,
+                if(suffix != null) ... [
+              if(isFullWidth) const Expanded(child: SizedBox()),
+                  suffix!
+                ]
+              ]
+            ),
+            Center(
+              child: child
+            )
+          ]
+        ) : Row(
           mainAxisSize: MainAxisSize.min,
+          // mainAxisAlignment: isChildAtCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
           children: [
             if(prefix != null) ... [
               prefix!,
