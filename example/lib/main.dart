@@ -197,12 +197,16 @@ class TextFieldsPage extends StatelessWidget {
             children: [
               const SizedBox(height: 45),
               ShokoUIModernTextField(
+                maxSymbols: 3,
+                obscureText: true,
+                validator: (value) {
+                  return value == 'Some';
+                },
                 errorColor: Colors.red,
-                focusColor: Colors.blue,
-                errorText: 'Какая-та хуита',
-                style: TextStyle(fontSize: 24, color: Colors.black),
+                focusColor: Color.fromRGBO(126, 127, 251, 1),
                 isError: false,
-                controller: TextEditingController(text: 'asdas')
+                label: 'Header',
+                controller: TextEditingController()
               )
             ]
           )

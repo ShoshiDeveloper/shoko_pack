@@ -1,3 +1,8 @@
+## 0.0.6
+Addendum ModernTextField
+Modefied TextField and TextFieldTheme: obscure text, remove unnecessary
+Fix bugs
+
 ## 0.0.3
 Addendum in ShokoUIThemeSwitch: enableOutline, insidePadding;
 Addendum in ShokoUIThemeTextField: styles, borderWidth, width

@@ -63,13 +63,14 @@ class ShokoUIThemeTextField {
   final TextStyle? labelTextStyle;
   
   final double? borderWidth;
-  final double? width;
+  
+  final TextStyle? errorTextStyle;
   
   const ShokoUIThemeTextField({
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
     this.insidePaddings, this.radius,
     this.style, this.labelTextStyle,
-    this.borderWidth, this.width
+    this.borderWidth, this.errorTextStyle
   });
 }
 

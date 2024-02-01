@@ -14,10 +14,11 @@ class ShokoUITextField extends StatefulWidget {
   final ShokoUIRadii? radius;
 
   final bool isEnabled;
+  final bool obscureText;
 
   final bool isError;
   final String? errorText;
-  final Widget? errorWidget;
+  final TextStyle? errorTextStyle;
 
   final String? label;
   final TextStyle? labelTextStyle;
@@ -28,18 +29,20 @@ class ShokoUITextField extends StatefulWidget {
   final Color? errorColor;
 
   final double? borderWidth;
-  final double? width;
 
+  final int? minSymbols;
+  final int? maxSymbols;
   
   const ShokoUITextField({super.key,
     required this.controller, this.style,
     this.onChange, this.validator,
     this.insidePaddings, this.radius = ShokoUIRadii.medium,
-    this.isEnabled = true,
-    this.isError = false, this.errorText, this.errorWidget,
+    this.isEnabled = true, this.obscureText = false,
+    this.isError = false, this.errorText, this.errorTextStyle,
     this.label, this.labelTextStyle,
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
-    this.borderWidth, this.width
+    this.borderWidth,
+    this.minSymbols, this.maxSymbols
   });
 
   @override
@@ -105,7 +108,6 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             curve: Curves.ease,
-            width: (widget.width ?? theme?.width),
             padding: (widget.insidePaddings ?? theme?.insidePaddings) ?? const EdgeInsets.all(12),
             decoration: BoxDecoration(
               borderRadius: (widget.radius?.get() ?? theme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
@@ -115,6 +117,9 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               )
             ),
             child: EditableText(
+              enableSuggestions: true,
+              autocorrect: true,
+              obscureText: widget.obscureText,
               onTapOutside: (event) => focusNode.unfocus(),
               onSubmitted: submit,
               // onEditingComplete: () => submit(value),
@@ -122,13 +127,14 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               readOnly: !widget.isEnabled,
               controller: widget.controller,
               focusNode: focusNode,
+              maxLines: widget.maxSymbols,
               style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? ((widget.disableColor ?? theme?.disableColor) ?? Colors.grey) : null),
               cursorColor: Colors.black,
               backgroundCursorColor: Colors.black
             )
           )
         ),
-        if (isError && (widget.errorWidget != null || widget.errorText != null)) (widget.errorWidget ?? Text(widget.errorText!, style: TextStyle(color: widget.errorColor ?? Colors.red),))
+        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme?.errorTextStyle ?? TextStyle(color: widget.errorColor ?? Colors.red),))
       ]
     );
   }
