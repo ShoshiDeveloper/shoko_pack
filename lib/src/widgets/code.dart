@@ -30,6 +30,10 @@ class ShokoUICode extends StatefulWidget {
 
   final ShokoUIRadii? radius;
 
+  final double? height;
+  final double? width;
+  final double? gap;
+
   const ShokoUICode({
     super.key,
     required this.symbolsCount, this.hintSymbol,
@@ -37,7 +41,8 @@ class ShokoUICode extends StatefulWidget {
     this.style, this.keyboardType = TextInputType.number,
     this.onSubmit,
     this.isError = false, this.autoNext = true, this.fillBackground = false, this.isEnabled = true,
-    this.radius
+    this.radius,
+    this.height, this.width, this.gap
   });
 
   @override
@@ -84,7 +89,7 @@ class _ShokoUICodeState extends State<ShokoUICode> {
 
     if (idx == widget.symbolsCount-1) {
       FocusScope.of(context).unfocus();
-      widget.onSubmit!(codeSymbols.join());
+      if(widget.onSubmit != null) widget.onSubmit!(codeSymbols.join());
     } else if (widget.autoNext) {
       FocusScope.of(context).requestFocus(focusNodes[idx+1]);
     }
@@ -116,11 +121,13 @@ class _ShokoUICodeState extends State<ShokoUICode> {
           color: widget.enableColor ?? Colors.black
         )
       ) : null,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Wrap(
+        spacing: widget.gap ?? 8,
         children: List.generate(
           widget.symbolsCount,
           (index) => _CodeWidgetSymbol(
+            width: widget.width ?? 40,
+            height: widget.height ?? 48,
             controller: controllers[index],
             focusNode: focusNodes[index],
             color: getWidgetSymbolColor(index),
@@ -162,6 +169,9 @@ class _CodeWidgetSymbol extends StatelessWidget {
   final Color color;
   final ShokoUIRadii? radius;
 
+  final double height;
+  final double width;
+
   final Function()? onTap;
   final Function(String symbol)? symbolChanged;
   final Function()? onTapOutside;
@@ -170,7 +180,8 @@ class _CodeWidgetSymbol extends StatelessWidget {
     this.style, this.borderType, required this.keyboardType,
     required this.color,
     this.onTap, this.symbolChanged, this.onTapOutside,
-    required this.fillBackground, this.radius
+    required this.fillBackground, this.radius,
+    required this.height,required  this.width
   });
 
   BoxDecoration? _getDecoration() {
@@ -197,11 +208,10 @@ class _CodeWidgetSymbol extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-      // color: Colors.green,
-      // height: 32+8,
-      width: 36 + 8,
-      // width: 64,
+      // padding: const EdgeInsets.symmetric(vertical: 8),
+      alignment: Alignment.center,
+      width: width+8,
+      height: height+8,
       decoration: _getDecoration(),
       child: Focus(
         onFocusChange: (value) {
@@ -219,7 +229,7 @@ class _CodeWidgetSymbol extends StatelessWidget {
           controller: controller,
           focusNode: focusNode,
           keyboardType: keyboardType,
-          style: style?.copyWith(fontSize: 32) ?? const TextStyle(fontSize: 32, color: Colors.black),
+          style: style ?? TextStyle(fontSize: height-6, color: Colors.black),
           cursorColor: color,
           backgroundCursorColor: color,
           inputFormatters: [
