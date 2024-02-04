@@ -5,7 +5,7 @@ import 'package:shoko_ui/shoko_ui.dart';
 enum ShokoUICodeBorderType {externalOutline, underSymbolsBorder}
 
 ///Example: pin, friend code, share code and etc.
-class ShokoUICode extends StatefulWidget {
+class ShokoUICodeTextField extends StatefulWidget {
 
   final int symbolsCount;
   final String? hintSymbol;
@@ -34,7 +34,7 @@ class ShokoUICode extends StatefulWidget {
   final double? width;
   final double? gap;
 
-  const ShokoUICode({
+  const ShokoUICodeTextField({
     super.key,
     required this.symbolsCount, this.hintSymbol,
     this.borderType, this.enableColor, this.disableColor, this.errorColor, this.focusColor,
@@ -46,10 +46,10 @@ class ShokoUICode extends StatefulWidget {
   });
 
   @override
-  State<ShokoUICode> createState() => _ShokoUICodeState();
+  State<ShokoUICodeTextField> createState() => _ShokoUICodeTextFieldState();
 }
 
-class _ShokoUICodeState extends State<ShokoUICode> {
+class _ShokoUICodeTextFieldState extends State<ShokoUICodeTextField> {
   late final List<TextEditingController> controllers = List.generate(widget.symbolsCount, (index) => TextEditingController(text: widget.hintSymbol));
   late final List<FocusNode> focusNodes = List.generate(widget.symbolsCount, (index) => FocusNode());
   late final List<String> codeSymbols = List.generate(widget.symbolsCount, (index) => widget.hintSymbol ?? '');
@@ -58,7 +58,7 @@ class _ShokoUICodeState extends State<ShokoUICode> {
   int? focusIndex;
 
   @override
-  void didUpdateWidget(covariant ShokoUICode oldWidget) {
+  void didUpdateWidget(covariant ShokoUICodeTextField oldWidget) {
 
     for (var i = 0; i < widget.symbolsCount; i++) {
       controllers[i].text = widget.hintSymbol ?? '';
@@ -69,7 +69,7 @@ class _ShokoUICodeState extends State<ShokoUICode> {
 
   @override
   void initState() {
-    // borderType = widget.borderType ?? ShokoUICodeBorderType.externalOutline;
+    // borderType = widget.borderType ?? ShokoUICodeTextFieldBorderType.externalOutline;
     super.initState();
   }
 

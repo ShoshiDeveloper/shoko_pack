@@ -74,8 +74,8 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
 
   @override
   void dispose() {
-    widget.controller.dispose();
-    focusNode.dispose();
+    // widget.controller.dispose();
+    // focusNode.dispose();
     super.dispose();
   }
 

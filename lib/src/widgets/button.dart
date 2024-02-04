@@ -39,7 +39,7 @@ class ShokoUIButton extends StatelessWidget {
       onLongPress: onLongPress,
       child: Container(
         width: isFullWidth ? double.maxFinite : null,
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),//16
         decoration: BoxDecoration(
           color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
           borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),

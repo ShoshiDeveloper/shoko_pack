@@ -9,3 +9,4 @@ export 'src/widgets/textfields/textfield.dart';
 export 'src/widgets/textfields/modern_textfield.dart';
 export 'src/widgets/code.dart';
 export 'src/theme/shoko_ui_theme.dart';
+export 'package:gap/gap.dart';

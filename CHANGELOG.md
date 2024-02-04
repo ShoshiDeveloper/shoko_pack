@@ -1,3 +1,6 @@
+## 0.0.7
+Fix bugs and add GAP package
+Addendum CodeTextField
 ## 0.0.6
 Addendum ModernTextField
 Modefied TextField and TextFieldTheme: obscure text, remove unnecessary
