@@ -1,3 +1,5 @@
+## 0.0.8
+Addendum SwitchType for change ratio
 ## 0.0.7
 Fix bugs and add GAP package
 Addendum CodeTextField
