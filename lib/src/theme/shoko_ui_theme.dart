@@ -82,12 +82,14 @@ class ShokoUIThemeSwitch {
   final Color? outlineColor;
   final Color? inactiveOutlineColor;
 
+  final ShokoUISwitchType? switchType;
   
   final bool? enableOutline;
   final double? insidePadding;
 
   const ShokoUIThemeSwitch({
     this.thumbColor, this.inactiveThumbColor, this.backgroundColor, this.inactiveBackgroundColor, this.outlineColor, this.inactiveOutlineColor,
+    this.switchType,
     this.enableOutline, this.insidePadding
   });
 }

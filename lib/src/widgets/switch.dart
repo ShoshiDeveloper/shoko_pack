@@ -1,6 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
+enum ShokoUISwitchType {long, short}
+
+extension ShokoUISwitchTypeExtension on ShokoUISwitchType {
+  double getHeight(double width) {
+    switch (name) {
+      case "long":
+        return width/2;
+      case "short":
+        return width/1.6;
+      default:
+        return width/2;
+    }
+  }
+    double getMargin(double width) {
+    switch (name) {
+      case "long":
+        return width/2;
+      case "short":
+        return width/2.5;
+      default:
+        return width/2;
+    }
+  }
+}
+
 class ShokoUISwitch extends StatefulWidget {
   final Function(bool newValue)? onChange;
   
@@ -13,6 +38,8 @@ class ShokoUISwitch extends StatefulWidget {
   final Color? inactiveBackgroundColor;
   final Color? outlineColor;
   final Color? inactiveOutlineColor;
+  
+  final ShokoUISwitchType? switchType;
 
   final bool? enableOutline;
   final double? insidePadding;
@@ -20,6 +47,7 @@ class ShokoUISwitch extends StatefulWidget {
   const ShokoUISwitch({super.key,
     required this.value, this.onChange, this.width = 64,
     this.thumbColor, this.backgroundColor, this.outlineColor, this.inactiveThumbColor, this.inactiveBackgroundColor, this.inactiveOutlineColor,
+    this.switchType,
     this.enableOutline, this.insidePadding
   });
 
@@ -78,7 +106,7 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
       },
       child: Container(
         width: widget.width,
-        height: widget.width/2,
+        height: (widget.switchType ?? context.shokoTheme?.switchTheme?.switchType ?? ShokoUISwitchType.long).getHeight(widget.width),
         padding: EdgeInsets.all((widget.insidePadding ?? theme?.insidePadding) ?? 4),
         decoration: BoxDecoration(
           color: backgroundColor,
@@ -89,7 +117,10 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
           ) : null
         ),
         child: AnimatedContainer(
-          margin: EdgeInsets.only(left: value ? widget.width/2 : 0, right: value ? 0 : widget.width/2),
+          margin: EdgeInsets.only(
+            left: value ? (widget.switchType ?? context.shokoTheme?.switchTheme?.switchType ?? ShokoUISwitchType.long).getMargin(widget.width) : 0,
+            right: value ? 0 : (widget.switchType ?? context.shokoTheme?.switchTheme?.switchType ?? ShokoUISwitchType.long).getMargin(widget.width)
+          ),
           decoration: BoxDecoration(
             color: thumbColor,
             borderRadius: BorderRadius.circular(100)
