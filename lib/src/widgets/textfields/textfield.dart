@@ -129,9 +129,9 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               // onEditingComplete: () => submit(value),
               onChanged: (value) => this.value = value,
               readOnly: !widget.isEnabled,
+              // max: widget.maxSymbols,
               controller: widget.controller,
               focusNode: focusNode,
-              maxLines: widget.maxSymbols,
               style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? ((widget.disableColor ?? theme?.disableColor) ?? Colors.grey) : null),
               cursorColor: Colors.black,
               backgroundCursorColor: Colors.black

@@ -12,6 +12,7 @@ class ShokoUIModernTextField extends StatefulWidget {
 
   final bool isEnabled;
   final bool obscureText;
+  final bool? isOutline;
 
   final bool isError;
   final String? errorText;
@@ -29,7 +30,7 @@ class ShokoUIModernTextField extends StatefulWidget {
   final int? maxSymbols;
   
   const ShokoUIModernTextField({super.key,
-    required this.controller, this.style,
+    required this.controller, this.style, this.isOutline,
     this.onChange, this.validator,
     this.isEnabled = true,
     this.isError = false, this.errorText, this.errorTextStyle,
@@ -82,6 +83,25 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
     });
   }
 
+  Color getWidgetColor() {
+    final ShokoUIThemeTextField? theme = context.shokoTheme?.textFieldTheme;
+    
+    if (!widget.isEnabled) {//if code widget is disabled
+      return (widget.disableColor ?? theme?.disableColor) ?? Colors.grey[300]!;
+    }
+    //if code widget enabled and not focused
+    if (focusNode.hasFocus) {
+      return widget.focusColor ?? theme?.focusColor ?? Colors.grey[350]!;
+    }
+
+    if (widget.isError) {
+      return widget.errorColor ?? theme?.errorColor ?? Colors.red;
+    }
+
+    return widget.enableColor ?? theme?.enableColor ?? Colors.grey[200]!;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final ShokoUIThemeTextField? theme = context.shokoTheme?.textFieldTheme;
@@ -98,11 +118,12 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
             duration: const Duration(milliseconds: 500),
             curve: Curves.ease,
             decoration: BoxDecoration(
+              color: (widget.isOutline ?? theme?.isOutline ?? true) ? null : getWidgetColor(),
               borderRadius: ShokoUIRadii.mediumPlus.get(),
-              border: Border.all(
+              border: (widget.isOutline ?? theme?.isOutline ?? true) ? Border.all(
                 width: 1,
-                color: (focusNode.hasFocus && widget.isEnabled ? (widget.focusColor ?? theme?.focusColor) : (widget.isEnabled ? (isError ? (widget.errorColor ?? theme?.errorColor) : (widget.enableColor ?? theme?.enableColor)) : (widget.disableColor ?? theme?.disableColor)) ?? Colors.black)!
-              )
+                color: getWidgetColor()
+              ) : null
             ),
             child: TextField(
               onTapOutside: (event) => focusNode.unfocus(),

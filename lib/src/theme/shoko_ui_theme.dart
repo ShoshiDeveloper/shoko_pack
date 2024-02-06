@@ -66,11 +66,14 @@ class ShokoUIThemeTextField {
   
   final TextStyle? errorTextStyle;
   
+  final bool? isOutline;
+  
   const ShokoUIThemeTextField({
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
     this.insidePaddings, this.radius,
     this.style, this.labelTextStyle,
-    this.borderWidth, this.errorTextStyle
+    this.borderWidth, this.errorTextStyle,
+    this.isOutline
   });
 }
 
