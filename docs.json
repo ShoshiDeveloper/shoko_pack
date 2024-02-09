@@ -4,7 +4,7 @@
     "logo": "/assets/logo.png",
     "logoDark": "/assets/logo-dark.png",
     "anchors": [
-        { title: "Homepage", icon: "house", link: "https://example.com" }
+        { "title": "Homepage", "icon": "house", "link": "https://shokoteam.ru" }
       ],
     "sidebar": [
         ["Getting Started", "/"],
