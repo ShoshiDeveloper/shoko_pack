@@ -7,6 +7,10 @@
         { "title": "Homepage", "icon": "house", "link": "https://shokoteam.ru" }
       ],
     "sidebar": [
-        ["Getting Started", "/"]
+        ["Getting Started", "/"],
+        ["Advanced", [
+            ["Reference API", "/reference"],
+            ["FAQs", "/faqs"]
+        ]]
     ]
 }
