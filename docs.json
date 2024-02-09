@@ -5,12 +5,5 @@
     "logoDark": "/assets/logo-dark.png",
     "anchors": [
         { "title": "Homepage", "icon": "house", "link": "https://shokoteam.ru" }
-      ],
-    "sidebar": [
-        ["Getting Started", "/"],
-        ["Advanced", [
-            ["Reference API", "/reference"],
-            ["FAQs", "/faqs"]
-        ]]
-    ]
+      ]
 }
