@@ -33,6 +33,9 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return ShokoUIThemeWidget(
       shokoUITheme: const ShokoUITheme(
+        textFieldTheme: ShokoUIThemeTextField(
+          isOutline: false
+        ),
         switchTheme: ShokoUIThemeSwitch(
           backgroundColor: Colors.green,
           inactiveBackgroundColor: Colors.red,
@@ -197,14 +200,12 @@ class TextFieldsPage extends StatelessWidget {
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 45),
-              ShokoUIModernTextField(
+              ShokoUITextField(
                 maxSymbols: 3,
                 obscureText: true,
                 validator: (value) {
                   return value == 'Some';
                 },
-                errorColor: Colors.red,
-                focusColor: Color.fromRGBO(126, 127, 251, 1),
                 isError: false,
                 label: 'Header',
                 controller: TextEditingController()

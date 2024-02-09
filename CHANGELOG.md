@@ -1,3 +1,7 @@
+## 0.0.8+1
+Addendum isOutline param in modernTextField and its theme
+## 0.0.8
+Addendum SwitchType for change ratio
 ## 0.0.7
 Fix bugs and add GAP package
 Addendum CodeTextField
