@@ -61,42 +61,53 @@ class ButtonsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
-            // spacing: 8,
-            // runSpacing: 8,
             children: [
-               ShokoUIButton(
-                // isOutline: true,
-                isFullWidth: true,
-                prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
-                suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
-                           ),
-              SizedBox(height: 8),
-              ShokoUIButton(
-                isFullWidth: true,
-                prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
-                suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                child: Text('Full  full width', style: TextStyle(fontSize: 16, color: Colors.white),),
+              Container(
+                color: Colors.amber,
+                child: Row(
+                  // mainAxisSize: MainAxisSize.min,
+                  // spacing: 8,
+                  // runSpacing: 8,
+                  children: [
+                     Flexible(
+                       child: ShokoUIButton(
+                        // isOutline: true,
+                        isFullWidth: true,
+                        prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
+                        suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+                        child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
+                                   ),
+                     ),
+                    SizedBox(height: 8),
+                    Flexible(
+                      child: ShokoUIButton(
+                        isFullWidth: true,
+                        prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
+                        suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+                        child: Text('Full  full width', style: TextStyle(fontSize: 16, color: Colors.white),),
+                      ),
+                    ),
+                    // SizedBox(height: 8),
+                    // ShokoUIButton(
+                    //   color: Colors.blueAccent,
+                    //   child: Text('Only color, only child', style: TextStyle(fontSize: 16, color: Colors.white)),
+                    // ),
+                    // SizedBox(height: 8),
+                    // ShokoUIButton(
+                    //   color: Colors.blueAccent,
+                    //   isFullWidth: true,
+                    //   suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+                    //   child: Text('Only child and suffix', style: TextStyle(fontSize: 16, color: Colors.white),),
+                    // ),
+                    // SizedBox(height: 8),
+                  ],
+                ),
               ),
-              // SizedBox(height: 8),
-              // ShokoUIButton(
-              //   color: Colors.blueAccent,
-              //   child: Text('Only color, only child', style: TextStyle(fontSize: 16, color: Colors.white)),
-              // ),
-              // SizedBox(height: 8),
-              // ShokoUIButton(
-              //   color: Colors.blueAccent,
-              //   isFullWidth: true,
-              //   suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-              //   child: Text('Only child and suffix', style: TextStyle(fontSize: 16, color: Colors.white),),
-              // ),
-              // SizedBox(height: 8),
             ],
           )
         )

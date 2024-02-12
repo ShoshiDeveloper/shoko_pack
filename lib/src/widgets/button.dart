@@ -33,9 +33,7 @@ class ShokoUIButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _flexible(
-      isFullWidth: isFullWidth,
-      child: GestureDetector(
+    return GestureDetector(
           onTap: onTap,
           onDoubleTap: onDoubleTap,
           onLongPress: onLongPress,
@@ -51,12 +49,11 @@ class ShokoUIButton extends StatelessWidget {
                 color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
               ) : null,
             ),
-            child: isChildAtCenter? Stack(
+            child: isChildAtCenter ? Stack(
               // alignment: Alignment.center,
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.min,
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     if(prefix != null) ... [
                       prefix!,
@@ -73,7 +70,6 @@ class ShokoUIButton extends StatelessWidget {
               ]
             ) : Row(
               mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: isChildAtCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
               children: [
                 if(prefix != null) ... [
                   prefix!,
@@ -88,11 +84,6 @@ class ShokoUIButton extends StatelessWidget {
               ]
             ),
           ),
-      ),
     );
-  }
-
-  Widget _flexible({required bool isFullWidth, required Widget child}) {
-    return isFullWidth ? Flexible(child: child) : child;
   }
 }
