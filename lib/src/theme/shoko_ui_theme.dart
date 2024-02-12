@@ -55,6 +55,9 @@ class ShokoUIThemeTextField {
   final Color? disableColor;
   final Color? focusColor;
   final Color? errorColor;
+  
+  final Color? cursorColor;
+  final Color? backgroundCursorColor;
 
   final EdgeInsets? insidePaddings;
   final ShokoUIRadii? radius;
@@ -70,6 +73,7 @@ class ShokoUIThemeTextField {
   
   const ShokoUIThemeTextField({
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
+    this.cursorColor, this.backgroundCursorColor,
     this.insidePaddings, this.radius,
     this.style, this.labelTextStyle,
     this.borderWidth, this.errorTextStyle,

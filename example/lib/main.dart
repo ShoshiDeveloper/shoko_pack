@@ -27,7 +27,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
 
-  PageController controller = PageController(initialPage: 3);
+  PageController controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -65,36 +65,38 @@ class ButtonsPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: Wrap(
-            spacing: 8,
-            runSpacing: 8,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            // spacing: 8,
+            // runSpacing: 8,
             children: [
                ShokoUIButton(
                 // isOutline: true,
                 isFullWidth: true,
                 prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
                 suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                child: Text('Full params', style: TextStyle(fontSize: 16, color: Colors.white)),
-              ),
+                child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
+                           ),
               SizedBox(height: 8),
               ShokoUIButton(
+                isFullWidth: true,
                 prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
                 suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                child: Text('Full params without full width', style: TextStyle(fontSize: 16, color: Colors.white),),
+                child: Text('Full  full width', style: TextStyle(fontSize: 16, color: Colors.white),),
               ),
-              SizedBox(height: 8),
-              ShokoUIButton(
-                color: Colors.blueAccent,
-                child: Text('Only color, only child', style: TextStyle(fontSize: 16, color: Colors.white)),
-              ),
-              SizedBox(height: 8),
-              ShokoUIButton(
-                color: Colors.blueAccent,
-                isFullWidth: true,
-                suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                child: Text('Only child and suffix', style: TextStyle(fontSize: 16, color: Colors.white),),
-              ),
-              SizedBox(height: 8),
+              // SizedBox(height: 8),
+              // ShokoUIButton(
+              //   color: Colors.blueAccent,
+              //   child: Text('Only color, only child', style: TextStyle(fontSize: 16, color: Colors.white)),
+              // ),
+              // SizedBox(height: 8),
+              // ShokoUIButton(
+              //   color: Colors.blueAccent,
+              //   isFullWidth: true,
+              //   suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+              //   child: Text('Only child and suffix', style: TextStyle(fontSize: 16, color: Colors.white),),
+              // ),
+              // SizedBox(height: 8),
             ],
           )
         )

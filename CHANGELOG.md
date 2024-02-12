@@ -1,3 +1,5 @@
+## 0.0.9
+Fix button full width and add cursorColor in textfields
 ## 0.0.8+1
 Addendum isOutline param in modernTextField and its theme
 ## 0.0.8

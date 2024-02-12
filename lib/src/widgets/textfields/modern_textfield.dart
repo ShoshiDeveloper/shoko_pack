@@ -129,6 +129,7 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
               onTapOutside: (event) => focusNode.unfocus(),
               onSubmitted: submit,
               onChanged: (value) => this.value = value,
+              cursorColor: theme?.cursorColor,
               readOnly: !widget.isEnabled,
               controller: widget.controller,
               focusNode: focusNode,

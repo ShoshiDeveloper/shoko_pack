@@ -33,59 +33,66 @@ class ShokoUIButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      onDoubleTap: onDoubleTap,
-      onLongPress: onLongPress,
-      child: Container(
-        width: isFullWidth ? double.maxFinite : null,
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),//16
-        decoration: BoxDecoration(
-          color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
-          borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
-          boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
-          border: isOutline ? Border.all(
-            width: 1,
-            color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
-          ) : null,
-        ),
-        child: isChildAtCenter? Stack(
-          // alignment: Alignment.center,
-          children: [
-            Row(
+    return _flexible(
+      isFullWidth: isFullWidth,
+      child: GestureDetector(
+          onTap: onTap,
+          onDoubleTap: onDoubleTap,
+          onLongPress: onLongPress,
+          child: Container(
+            width: isFullWidth ? MediaQuery.of(context).size.width : null,
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),//16
+            decoration: BoxDecoration(
+              color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
+              borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
+              boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
+              border: isOutline ? Border.all(
+                width: 1,
+                color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
+              ) : null,
+            ),
+            child: isChildAtCenter? Stack(
+              // alignment: Alignment.center,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if(prefix != null) ... [
+                      prefix!,
+                    ] ,
+                    if(suffix != null) ... [
+                  if(isFullWidth) const Expanded(child: SizedBox()),
+                      suffix!
+                    ]
+                  ]
+                ),
+                Center(
+                  child: child
+                )
+              ]
+            ) : Row(
               mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              // mainAxisAlignment: isChildAtCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
               children: [
                 if(prefix != null) ... [
                   prefix!,
+                  const SizedBox(width: 8),
                 ] ,
+                child,
                 if(suffix != null) ... [
-              if(isFullWidth) const Expanded(child: SizedBox()),
+                  if(isFullWidth) const Expanded(child: SizedBox()),
+                  const SizedBox(width: 8),
                   suffix!
                 ]
               ]
             ),
-            Center(
-              child: child
-            )
-          ]
-        ) : Row(
-          mainAxisSize: MainAxisSize.min,
-          // mainAxisAlignment: isChildAtCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
-          children: [
-            if(prefix != null) ... [
-              prefix!,
-              const SizedBox(width: 8),
-            ] ,
-            child,
-            if(suffix != null) ... [
-              if(isFullWidth) const Expanded(child: SizedBox()),
-              const SizedBox(width: 8),
-              suffix!
-            ]
-          ]
-        ),
+          ),
       ),
     );
+  }
+
+  Widget _flexible({required bool isFullWidth, required Widget child}) {
+    return isFullWidth ? Flexible(child: child) : child;
   }
 }

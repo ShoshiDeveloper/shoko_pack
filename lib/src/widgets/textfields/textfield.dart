@@ -133,8 +133,8 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               controller: widget.controller,
               focusNode: focusNode,
               style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? ((widget.disableColor ?? theme?.disableColor) ?? Colors.grey) : null),
-              cursorColor: Colors.black,
-              backgroundCursorColor: Colors.black
+              cursorColor: theme?.cursorColor ?? Colors.purple,
+              backgroundCursorColor: theme?.backgroundCursorColor ?? Colors.purple
             )
           )
         ),
