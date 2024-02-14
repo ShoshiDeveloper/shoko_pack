@@ -1,3 +1,5 @@
+## 0.0.9+3
+Add flexible constructor on button
 ## 0.0.9
 Fix button full width and add cursorColor in textfields
 ## 0.0.8+1
