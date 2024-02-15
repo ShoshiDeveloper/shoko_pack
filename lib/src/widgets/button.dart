@@ -26,6 +26,7 @@ class ShokoUIButton extends StatelessWidget {
 
   final bool _flexible;
 
+  ///If the button has gone off the screen, then use the flexible constructor
   const ShokoUIButton({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isFullWidth = false, this.isChildAtCenter = false,
@@ -33,6 +34,7 @@ class ShokoUIButton extends StatelessWidget {
     this.radius, this.shadow
   }) : _flexible = false;
 
+  /// Use with `isFullWidth` if this button is in `Row`
   const ShokoUIButton.flexible({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isFullWidth = false, this.isChildAtCenter = false,

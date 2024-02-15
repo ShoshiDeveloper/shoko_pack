@@ -69,28 +69,24 @@ class ButtonsPage extends StatelessWidget {
             children: [
               Container(
                 color: Colors.amber,
-                child: Row(
+                child: const Row(
                   // mainAxisSize: MainAxisSize.min,
                   // spacing: 8,
                   // runSpacing: 8,
                   children: [
-                     Flexible(
-                       child: ShokoUIButton(
-                        // isOutline: true,
-                        isFullWidth: true,
-                        prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
-                        suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                        child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
-                                   ),
-                     ),
+                     ShokoUIButton.flexible(
+                      // isOutline: true,
+                      isFullWidth: true,
+                      prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
+                      suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+                      child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
+                                 ),
                     SizedBox(height: 8),
-                    Flexible(
-                      child: ShokoUIButton(
-                        isFullWidth: true,
-                        prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
-                        suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                        child: Text('Full  full width', style: TextStyle(fontSize: 16, color: Colors.white),),
-                      ),
+                    ShokoUIButton.flexible(
+                      isFullWidth: true,
+                      prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
+                      suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
+                      child: Text('Full  full width', style: TextStyle(fontSize: 16, color: Colors.white),),
                     ),
                     // SizedBox(height: 8),
                     // ShokoUIButton(
