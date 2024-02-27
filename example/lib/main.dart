@@ -64,48 +64,26 @@ class ButtonsPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              Container(
-                color: Colors.amber,
-                child: const Row(
-                  // mainAxisSize: MainAxisSize.min,
-                  // spacing: 8,
-                  // runSpacing: 8,
-                  children: [
-                     ShokoUIButton.flexible(
-                      // isOutline: true,
-                      isFullWidth: true,
-                      prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
-                      suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                      child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
-                                 ),
-                    SizedBox(height: 8),
-                    ShokoUIButton.flexible(
-                      isFullWidth: true,
-                      prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
-                      suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                      child: Text('Full  full width', style: TextStyle(fontSize: 16, color: Colors.white),),
-                    ),
-                    // SizedBox(height: 8),
-                    // ShokoUIButton(
-                    //   color: Colors.blueAccent,
-                    //   child: Text('Only color, only child', style: TextStyle(fontSize: 16, color: Colors.white)),
-                    // ),
-                    // SizedBox(height: 8),
-                    // ShokoUIButton(
-                    //   color: Colors.blueAccent,
-                    //   isFullWidth: true,
-                    //   suffix: Icon(Icons.arrow_forward_ios_rounded, color: Colors.white),
-                    //   child: Text('Only child and suffix', style: TextStyle(fontSize: 16, color: Colors.white),),
-                    // ),
-                    // SizedBox(height: 8),
-                  ],
-                ),
+              Row(
+                children: [
+                  ShokoUIButton.expanded(
+                   // isOutline: true,
+                   prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
+                   child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
+                              ),
+                  ShokoUIButton(
+                     // isOutline: true,
+                     prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
+                     child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),
+                                ),
+                  
+                ],
               ),
             ],
-          )
+          ),
         )
       )
     );
