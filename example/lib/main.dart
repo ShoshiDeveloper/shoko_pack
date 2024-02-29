@@ -70,6 +70,7 @@ class ButtonsPage extends StatelessWidget {
               Row(
                 children: [
                   ShokoUIButton.expanded(
+                    isChildAtCenter: true,
                    // isOutline: true,
                    prefix: Icon(Icons.supervised_user_circle_rounded, color: Colors.white),
                    child: Text('Fd', style: TextStyle(fontSize: 16, color: Colors.white)),

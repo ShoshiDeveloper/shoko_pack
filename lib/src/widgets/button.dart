@@ -31,6 +31,7 @@ class ShokoUIButton extends StatelessWidget {
   }) : expanded = false;
 
   
+  ///Use only in rows! In columns you will recieve Overflow
   const ShokoUIButton.expanded({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isChildAtCenter = false,
@@ -59,15 +60,26 @@ class ShokoUIButton extends StatelessWidget {
               color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
             ) : null,
           ),
-          child: Row(
+          child: isChildAtCenter ? Stack(
+          alignment: Alignment.center,
+            children: [
+              Row(
+                children: [
+                  if(prefix != null) ... [
+                    prefix!,
+                    const SizedBox(width: 8),
+                  ],
+                ]
+              ),
+                  child
+            ],
+          ) : Row(
             children: [
               if(prefix != null) ... [
                 prefix!,
                 const SizedBox(width: 8),
-              ] ,
-              SizedBox(
-                child: child
-              )
+              ],
+              child
             ]
           ),
         )
