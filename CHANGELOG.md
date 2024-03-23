@@ -1,3 +1,5 @@
+## 0.0.12
+Update button: new param "isFullHeight"
 ## 0.0.10
 Fix button
 ## 0.0.9+3

@@ -12,7 +12,8 @@ class ShokoUIButton extends StatelessWidget {
 
   final bool isOutline;
   final bool isChildAtCenter;
-  final bool expanded;
+  final bool fullHeight;
+  final bool _expanded;
 
   ///We recommend using it for text
   final Widget child;
@@ -27,8 +28,8 @@ class ShokoUIButton extends StatelessWidget {
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isChildAtCenter = false,
     required this.child, this.prefix,
-    this.radius, this.shadow
-  }) : expanded = false;
+    this.radius, this.shadow, this.fullHeight = true
+  }) : _expanded = false;
 
   
   ///Use only in rows! In columns you will recieve Overflow
@@ -36,21 +37,21 @@ class ShokoUIButton extends StatelessWidget {
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isChildAtCenter = false,
     required this.child, this.prefix,
-    this.radius, this.shadow
-  }) : expanded = true;
+    this.radius, this.shadow, this.fullHeight = true
+  }) : _expanded = true;
 
 
   @override
   Widget build(BuildContext context) {
-    return _expanded(
-      isExpanded: expanded,
+    return _expandedWidget(
+      isExpanded: _expanded,
       child: GestureDetector(
         onTap: onTap,
         onDoubleTap: onDoubleTap,
         onLongPress: onLongPress,
         child: Container(
-          height: 46,
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),//16
+          height: fullHeight ? 46 : 38,
+          padding: EdgeInsets.symmetric(vertical: fullHeight ? 12 : 8, horizontal: 32),
           decoration: BoxDecoration(
             color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
             borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
@@ -60,10 +61,11 @@ class ShokoUIButton extends StatelessWidget {
               color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
             ) : null,
           ),
-          child: isChildAtCenter ? Stack(
+          child: (context.shokoTheme?.buttonTheme?.isChildAtCenter ?? isChildAtCenter) ? Stack(
           alignment: Alignment.center,
             children: [
               Row(
+                // mainAxisSize: MainAxisSize.min,
                 children: [
                   if(prefix != null) ... [
                     prefix!,
@@ -71,7 +73,7 @@ class ShokoUIButton extends StatelessWidget {
                   ],
                 ]
               ),
-                  child
+              child
             ],
           ) : Row(
             children: [
@@ -87,7 +89,7 @@ class ShokoUIButton extends StatelessWidget {
     );
   }
 
-  Widget _expanded({required bool isExpanded, required Widget child}) {
+  Widget _expandedWidget({required bool isExpanded, required Widget child}) {
     return isExpanded ? Expanded(child: child) : child;
   }
 }

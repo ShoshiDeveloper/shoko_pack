@@ -37,8 +37,9 @@ class ShokoUIThemeButton {
   final Color? color;
   final ShokoUIRadii? radius;
   final ShokoUIShadow? shadow;
+  final bool? isChildAtCenter;
 
-  const ShokoUIThemeButton({this.color, this.radius, this.shadow});
+  const ShokoUIThemeButton({this.color, this.radius, this.shadow, this.isChildAtCenter});
 }
 
 class ShokoUIThemeRadio {
