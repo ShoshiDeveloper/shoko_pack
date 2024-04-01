@@ -1,3 +1,14 @@
+## 0.0.14
+**New**:
+- keyboardType in ModernTextField
+thx ([isaak330](https://github.com/isaak330)).
+## 0.0.13
+**New**:
+- CodeTextFieldController for codeField
+- Suffix in ModernTextField
+- InputFormatters in ModernTextField
+
+thx ([isaak330](https://github.com/isaak330)).
 ## 0.0.12
 Update button: new param "isFullHeight"
 ## 0.0.10

@@ -1,7 +1,7 @@
 Coming soon..
 
-## Plans
-    Create gap
+<!-- ## Plans
+    Create gap -->
 
 <!-- 
 know whether this package might be useful for them.

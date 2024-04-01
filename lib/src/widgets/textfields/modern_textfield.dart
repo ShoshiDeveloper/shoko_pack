@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
 class ShokoUIModernTextField extends StatefulWidget {
@@ -26,8 +28,14 @@ class ShokoUIModernTextField extends StatefulWidget {
   final Color? focusColor;
   final Color? errorColor;
 
+  final TextInputType? keyboardType;
+
   final int? minSymbols;
   final int? maxSymbols;
+
+  final Widget? suffix;
+
+  final List<TextInputFormatter>? inputFormatters;
   
   const ShokoUIModernTextField({super.key,
     required this.controller, this.style, this.isOutline,
@@ -36,7 +44,10 @@ class ShokoUIModernTextField extends StatefulWidget {
     this.isError = false, this.errorText, this.errorTextStyle,
     this.label, this.labelTextStyle,
     this.enableColor, this.disableColor, this.focusColor, this.errorColor,
-    this.maxSymbols, this.minSymbols, this.obscureText = false
+    this.keyboardType,
+    this.maxSymbols, this.minSymbols, this.obscureText = false,
+    this.suffix,
+    this.inputFormatters
   });
 
   @override
@@ -125,28 +136,40 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
                 color: getWidgetColor()
               ) : null
             ),
-            child: TextField(
-              onTapOutside: (event) => focusNode.unfocus(),
-              onSubmitted: submit,
-              onChanged: (value) => this.value = value,
-              cursorColor: theme?.cursorColor,
-              readOnly: !widget.isEnabled,
-              controller: widget.controller,
-              focusNode: focusNode,
-              maxLength: widget.maxSymbols,
-              obscureText: widget.obscureText,
-              enableSuggestions: true,
-              autocorrect: true,
-              maxLines: 1,
-              decoration: InputDecoration(
-                enabled: widget.isEnabled,
-                counterText: '',
-                contentPadding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-                label: (widget.label != null) ? Text(widget.label!) : null,
-                labelStyle: (widget.labelTextStyle ?? theme?.labelTextStyle ?? TextStyle(color: focusNode.hasFocus ? widget.focusColor : (widget.isEnabled ? isError ? widget.errorColor ?? theme?.errorColor: (widget.enableColor ?? theme?.enableColor) : widget.disableColor ?? theme?.disableColor ?? Colors.grey[400]))),
-                border: InputBorder.none
-              ),
-              style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? (widget.disableColor ?? theme?.disableColor ?? Colors.grey[400]) : null),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    onSubmitted: submit,
+                    onTapOutside: (event) => focusNode.unfocus(),
+                    onChanged: (value) => this.value = value,
+                    controller: widget.controller,
+                    focusNode: focusNode,
+                    cursorColor: theme?.cursorColor,
+                    readOnly: !widget.isEnabled,
+                    autocorrect: true,
+                    enableSuggestions: true,
+                    obscureText: widget.obscureText,
+                    inputFormatters: widget.inputFormatters,
+                    keyboardType: widget.keyboardType,
+                    maxLength: widget.maxSymbols,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      enabled: widget.isEnabled,
+                      counterText: '',
+                      contentPadding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                      label: (widget.label != null) ? Text(widget.label!) : null,
+                      labelStyle: (widget.labelTextStyle ?? theme?.labelTextStyle ?? TextStyle(color: focusNode.hasFocus ? widget.focusColor : (widget.isEnabled ? isError ? widget.errorColor ?? theme?.errorColor: (widget.enableColor ?? theme?.enableColor) : widget.disableColor ?? theme?.disableColor ?? Colors.grey[400]))),
+                      border: InputBorder.none
+                    ),
+                    style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? (widget.disableColor ?? theme?.disableColor ?? Colors.grey[400]) : null),
+                  ),
+                ),
+                if(widget.suffix != null) ... [
+                  widget.suffix!,
+                  const Gap(20)
+                ],
+              ],
             )
           )
         ),
