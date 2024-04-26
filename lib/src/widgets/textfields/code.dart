@@ -34,6 +34,8 @@ class ShokoUICodeTextField extends StatefulWidget {
   final double? width;
   final double? gap;
 
+  final CodeTextFieldController? controller;
+
   const ShokoUICodeTextField({
     super.key,
     required this.symbolsCount, this.hintSymbol,
@@ -42,7 +44,8 @@ class ShokoUICodeTextField extends StatefulWidget {
     this.onSubmit,
     this.isError = false, this.autoNext = true, this.fillBackground = false, this.isEnabled = true,
     this.radius,
-    this.height, this.width, this.gap
+    this.height, this.width, this.gap,
+    this.controller
   });
 
   @override
@@ -69,7 +72,7 @@ class _ShokoUICodeTextFieldState extends State<ShokoUICodeTextField> {
 
   @override
   void initState() {
-    // borderType = widget.borderType ?? ShokoUICodeTextFieldBorderType.externalOutline;
+    widget.controller?.textFieldControllers = controllers;
     super.initState();
   }
 
