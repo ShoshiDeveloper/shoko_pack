@@ -31,8 +31,8 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ShokoUIThemeWidget(
-      shokoUITheme: const ShokoUITheme(
+    return ShokoUIKitThemeWidget(
+      shokoUIKitTheme: const ShokoUIKitTheme(
         textFieldTheme: ShokoUIThemeTextField(
           isOutline: false
         ),

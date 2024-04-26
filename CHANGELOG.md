@@ -30,7 +30,7 @@ Addendum in TextField: label and labelTextStyle
 
 ## 0.0.2
 
-Addendum ShokoUIThemeWidget for global theme for other a shoko widget
+Addendum ShokoUIKitThemeWidget for global theme for other a shoko widget
 
 Supported theme: all widgets
 

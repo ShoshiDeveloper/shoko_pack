@@ -3,33 +3,33 @@ import 'package:shoko_ui/shoko_ui.dart';
 
 ///Widget for set ui theme
 ///Preferably, the entire application should be wrapped so that the theme is accessible from anywhere
-class ShokoUIThemeWidget extends StatelessWidget {
-  final ShokoUITheme shokoUITheme;
+class ShokoUIKitThemeWidget extends StatelessWidget {
+  final ShokoUIKitTheme shokoUIKitTheme;
   final Widget child;
-  const ShokoUIThemeWidget({super.key, required this.shokoUITheme, required this.child});
+  const ShokoUIKitThemeWidget({super.key, required this.shokoUIKitTheme, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    context.initTheme(shokoUITheme);
+    context.initTheme(shokoUIKitTheme);
     return child;
   }
 }
 
 extension ShokoUIThemeExtension on BuildContext {
-  static ShokoUITheme? _shokoTheme;
-  initTheme(ShokoUITheme theme) => _shokoTheme = theme;
+  static ShokoUIKitTheme? _shokoTheme;
+  initTheme(ShokoUIKitTheme theme) => _shokoTheme = theme;
 
-  ShokoUITheme? get shokoTheme => _shokoTheme;
+  ShokoUIKitTheme? get shokoTheme => _shokoTheme;
 }
 
 ///A class that stores global theme settings
-class ShokoUITheme {
+class ShokoUIKitTheme {
   final ShokoUIThemeButton? buttonTheme;
   final ShokoUIThemeRadio? radioTheme;
   final ShokoUIThemeTextField? textFieldTheme;
   final ShokoUIThemeSwitch? switchTheme;
 
-  const ShokoUITheme({this.buttonTheme, this.radioTheme, this.textFieldTheme, this.switchTheme});
+  const ShokoUIKitTheme({this.buttonTheme, this.radioTheme, this.textFieldTheme, this.switchTheme});
 
 }
 
