@@ -1,3 +1,6 @@
+## 0.0.15
+**New**:
+- Add thumShadow for switch
 ## 0.0.14
 **New**:
 - keyboardType in ModernTextField

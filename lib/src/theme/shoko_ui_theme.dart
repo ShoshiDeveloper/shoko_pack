@@ -95,9 +95,11 @@ class ShokoUIThemeSwitch {
   final bool? enableOutline;
   final double? insidePadding;
 
+  final List<BoxShadow>? thumbShadow;
+
   const ShokoUIThemeSwitch({
     this.thumbColor, this.inactiveThumbColor, this.backgroundColor, this.inactiveBackgroundColor, this.outlineColor, this.inactiveOutlineColor,
     this.switchType,
-    this.enableOutline, this.insidePadding
+    this.enableOutline, this.insidePadding, this.thumbShadow
   });
 }
