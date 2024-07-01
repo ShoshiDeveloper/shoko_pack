@@ -1,8 +1,9 @@
 ## 0.0.15
 **New**:
-ShokoUIButton:
+- Add thumShadow for switch
     - isChildAtCenter -> childPosition, isChildAtCenter is deprecated now
     - prefix is not supported and deprecated now
+ShokoUIButton:
 ## 0.0.14
 **New**:
 - keyboardType in ModernTextField
@@ -46,7 +47,7 @@ Addendum in TextField: label and labelTextStyle
 
 ## 0.0.2
 
-Addendum ShokoUIThemeWidget for global theme for other a shoko widget
+Addendum ShokoUIKitThemeWidget for global theme for other a shoko widget
 
 Supported theme: all widgets
 
