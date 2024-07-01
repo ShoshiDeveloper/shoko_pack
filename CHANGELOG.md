@@ -1,9 +1,10 @@
+## 0.0.16
+Theme module was separated
 ## 0.0.15
 **New**:
 - Add thumShadow for switch
     - isChildAtCenter -> childPosition, isChildAtCenter is deprecated now
     - prefix is not supported and deprecated now
-ShokoUIButton:
 ## 0.0.14
 **New**:
 - keyboardType in ModernTextField

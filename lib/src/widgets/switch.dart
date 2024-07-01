@@ -41,6 +41,8 @@ class ShokoUISwitch extends StatefulWidget {
   
   final ShokoUISwitchType switchType;
 
+  final List<BoxShadow>? thumbShadow;
+
   final bool? enableOutline;
   final double? insidePadding;
 
@@ -48,7 +50,8 @@ class ShokoUISwitch extends StatefulWidget {
     required this.value, this.onChange, this.width = 64,
     this.thumbColor, this.backgroundColor, this.outlineColor, this.inactiveThumbColor, this.inactiveBackgroundColor, this.inactiveOutlineColor,
     this.switchType = ShokoUISwitchType.short,
-    this.enableOutline, this.insidePadding
+    this.enableOutline, this.insidePadding,
+    this.thumbShadow
   });
 
   @override
@@ -123,6 +126,7 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
           ),
           decoration: BoxDecoration(
             color: thumbColor,
+            boxShadow: widget.thumbShadow ?? context.shokoTheme?.switchTheme?.thumbShadow,
             borderRadius: BorderRadius.circular(100)
           ),
           // height: 32,
