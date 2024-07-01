@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoko_ui/shoko_ui.dart';
+import 'package:shoko_theme/shoko_theme.dart';
 
 enum ShokoUISwitchType {long, short}
 
@@ -39,7 +39,7 @@ class ShokoUISwitch extends StatefulWidget {
   final Color? outlineColor;
   final Color? inactiveOutlineColor;
   
-  final ShokoUISwitchType? switchType;
+  final ShokoUISwitchType switchType;
 
   final bool? enableOutline;
   final double? insidePadding;
@@ -47,7 +47,7 @@ class ShokoUISwitch extends StatefulWidget {
   const ShokoUISwitch({super.key,
     required this.value, this.onChange, this.width = 64,
     this.thumbColor, this.backgroundColor, this.outlineColor, this.inactiveThumbColor, this.inactiveBackgroundColor, this.inactiveOutlineColor,
-    this.switchType,
+    this.switchType = ShokoUISwitchType.short,
     this.enableOutline, this.insidePadding
   });
 
@@ -106,7 +106,7 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
       },
       child: Container(
         width: widget.width,
-        height: (widget.switchType ?? context.shokoTheme?.switchTheme?.switchType ?? ShokoUISwitchType.long).getHeight(widget.width),
+        height: (widget.switchType).getHeight(widget.width),
         padding: EdgeInsets.all((widget.insidePadding ?? theme?.insidePadding) ?? 4),
         decoration: BoxDecoration(
           color: backgroundColor,
@@ -118,8 +118,8 @@ class _ShokoUISwitchState extends State<ShokoUISwitch> {
         ),
         child: AnimatedContainer(
           margin: EdgeInsets.only(
-            left: value ? (widget.switchType ?? context.shokoTheme?.switchTheme?.switchType ?? ShokoUISwitchType.long).getMargin(widget.width) : 0,
-            right: value ? 0 : (widget.switchType ?? context.shokoTheme?.switchTheme?.switchType ?? ShokoUISwitchType.long).getMargin(widget.width)
+            left: value ? (widget.switchType).getMargin(widget.width) : 0,
+            right: value ? 0 : (widget.switchType).getMargin(widget.width)
           ),
           decoration: BoxDecoration(
             color: thumbColor,

@@ -1,3 +1,8 @@
+## 0.0.15
+**New**:
+ShokoUIButton:
+    - isChildAtCenter -> childPosition, isChildAtCenter is deprecated now
+    - prefix is not supported and deprecated now
 ## 0.0.14
 **New**:
 - keyboardType in ModernTextField

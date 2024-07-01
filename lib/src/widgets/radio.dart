@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoko_ui/shoko_ui.dart';
+import 'package:shoko_theme/shoko_theme.dart';
 
 enum ShokoUIRadioChildPosition {left, right}
 

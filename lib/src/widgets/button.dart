@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:shoko_ui/shoko_ui.dart';
+import 'package:shoko_theme/shoko_theme.dart';
+
+enum ButtonChildPosition {
+  start(MainAxisAlignment.start),
+  center(MainAxisAlignment.center),
+  end(MainAxisAlignment.end);
+  const ButtonChildPosition(this.alignment);
+  final MainAxisAlignment alignment;
+}
+enum ButtonWidth {
+  min(MainAxisSize.min),
+  max(MainAxisSize.max);
+  const ButtonWidth(this.size);
+  final MainAxisSize size;
+}
 
 class ShokoUIButton extends StatelessWidget {
   final Function()? onTap;
@@ -11,6 +24,7 @@ class ShokoUIButton extends StatelessWidget {
   final Color? color;
 
   final bool isOutline;
+  @Deprecated('Not supported now. Will be removed in v0.0.15')
   final bool isChildAtCenter;
   final bool fullHeight;
   final bool _expanded;
@@ -18,17 +32,21 @@ class ShokoUIButton extends StatelessWidget {
   ///We recommend using it for text
   final Widget child;
   ///We recommend using it for the icon
+  @Deprecated('Not supported now. Will be removed in v0.0.15')
   final Widget? prefix;
 
 
   final ShokoUIRadii? radius;
   final ShokoUIShadow? shadow;
+  final ButtonWidth width;
+  final ButtonChildPosition childPosition;
 
   const ShokoUIButton({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isChildAtCenter = false,
     required this.child, this.prefix,
-    this.radius, this.shadow, this.fullHeight = true
+    this.radius, this.shadow, this.fullHeight = true,
+    this.width = ButtonWidth.max, this.childPosition = ButtonChildPosition.center
   }) : _expanded = false;
 
   
@@ -37,59 +55,43 @@ class ShokoUIButton extends StatelessWidget {
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
     this.color, this.isOutline = false, this.isChildAtCenter = false,
     required this.child, this.prefix,
-    this.radius, this.shadow, this.fullHeight = true
+    this.radius, this.shadow, this.fullHeight = true,
+    this.width = ButtonWidth.max, this.childPosition = ButtonChildPosition.center
   }) : _expanded = true;
 
 
   @override
   Widget build(BuildContext context) {
-    return _expandedWidget(
-      isExpanded: _expanded,
+    return _buildExpended(
       child: GestureDetector(
-        onTap: onTap,
-        onDoubleTap: onDoubleTap,
-        onLongPress: onLongPress,
-        child: Container(
-          height: fullHeight ? 46 : 38,
-          padding: EdgeInsets.symmetric(vertical: fullHeight ? 12 : 8, horizontal: 32),
-          decoration: BoxDecoration(
-            color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
-            borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
-            boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
-            border: isOutline ? Border.all(
-              width: 1,
-              color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
-            ) : null,
-          ),
-          child: (context.shokoTheme?.buttonTheme?.isChildAtCenter ?? isChildAtCenter) ? Stack(
-          alignment: Alignment.center,
-            children: [
-              Row(
-                // mainAxisSize: MainAxisSize.min,
-                children: [
-                  if(prefix != null) ... [
-                    prefix!,
-                    const SizedBox(width: 8),
-                  ],
-                ]
-              ),
-              child
-            ],
-          ) : Row(
-            children: [
-              if(prefix != null) ... [
-                prefix!,
-                const SizedBox(width: 8),
-              ],
-              child
-            ]
-          ),
-        )
+          onTap: onTap,
+          onDoubleTap: onDoubleTap,
+          onLongPress: onLongPress,
+          child: Container(
+            height: fullHeight ? 46 : 38,
+            padding: EdgeInsets.symmetric(vertical: fullHeight ? 12 : 8, horizontal: 32),
+            decoration: BoxDecoration(
+              color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
+              borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
+              boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
+              border: isOutline ? Border.all(
+                width: 1,
+                color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
+              ) : null,
+            ),
+            child: Row(
+              mainAxisSize: width.size,
+              mainAxisAlignment: childPosition.alignment,
+              children: [
+                child
+              ]
+            ),
+          )
       ),
     );
   }
 
-  Widget _expandedWidget({required bool isExpanded, required Widget child}) {
-    return isExpanded ? Expanded(child: child) : child;
+  Widget _buildExpended({required Widget child}) {
+    return _expanded ? Expanded(child: child) : child;
   }
 }
