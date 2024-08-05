@@ -30,16 +30,22 @@ class ShokoThemeWidget extends StatelessWidget {
 
 ///A class that stores global theme settings
 class ShokoUITheme {
-  final ShokoUIThemeButton? buttonTheme;
-  final ShokoUIThemeRadio? radioTheme;
-  final ShokoUIThemeTextField? textFieldTheme;
-  final ShokoUIThemeSwitch? switchTheme;
+  final ShokoThemeButton buttonTheme;
+  final ShokoThemeRadio radioTheme;
+  final ShokoThemeTextField textFieldTheme;
+  final ShokoThemeSwitch switchTheme;
 
-  final ShokoUIDialogTheme? dialogTheme;
-  final ShokoUIMBSTheme? mbsTheme;
+  final ShokoDialogTheme dialogTheme;
+  final ShokoMBSTheme mbsTheme;
 
-
-  const ShokoUITheme({this.buttonTheme, this.radioTheme, this.textFieldTheme, this.switchTheme, this.dialogTheme, this.mbsTheme});
+  const ShokoUITheme({
+    this.buttonTheme = const ShokoThemeButton(),
+    this.radioTheme = const ShokoThemeRadio(),
+    this.textFieldTheme = const ShokoThemeTextField(),
+    this.switchTheme = const ShokoThemeSwitch(),
+    this.dialogTheme = const ShokoDialogTheme(),
+    this.mbsTheme = const ShokoMBSTheme()
+  });
 }
 
 

@@ -1,26 +1,26 @@
 import 'package:flutter/widgets.dart';
 import 'package:shoko_theme/shoko_theme.dart';
 
-class ShokoUIThemeTextField {
-  final Color? enableColor;
-  final Color? disableColor;
-  final Color? focusColor;
-  final Color? errorColor;
-  final Color? cursorColor;
+class ShokoThemeTextField {
+  final Color enableColor;
+  final Color disableColor;
+  final Color focusColor;
+  final Color errorColor;
+  final Color cursorColor;
 
-  final EdgeInsets? insidePaddings;
-  final ShokoRadii? radius;
+  final EdgeInsets insidePaddings;
+  final ShokoRadii radius;
 
   final TextStyle? style;
   final TextStyle? labelTextStyle;
   
-  final double? borderWidth;
+  final double borderWidth;
   
   final TextStyle? errorTextStyle;
   
-  final bool? isOutline;
+  final bool isOutline;
   
-  const ShokoUIThemeTextField({
+  const ShokoThemeTextField({
     this.enableColor = const Color.fromRGBO(225, 227, 230, 1),
     this.disableColor = const Color.fromRGBO(225, 227, 230, 1),
     this.focusColor = const Color.fromRGBO(126, 127, 251, 1),

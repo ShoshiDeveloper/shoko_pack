@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
 ///Modal bottom sheet
-class ShokoUIMBSTheme {
+class ShokoMBSTheme {
   final Color? bgColor;
   final Color? indicatorColor;
   final TextStyle? titleStyle;
 
-  const ShokoUIMBSTheme({this.bgColor, this.indicatorColor, this.titleStyle});
+  const ShokoMBSTheme({this.bgColor, this.indicatorColor, this.titleStyle});
 }

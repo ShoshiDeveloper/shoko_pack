@@ -1,8 +1,8 @@
 name: shoko_theme
 description: "This package is a ThemePackage from the ShokoTeam, which aims to accelerate the development of both your and our projects"
-version: 0.0.1+5
-homepage: https://pub.dev/packages/shoko_ui
-repository: https://github.com/ShoshiDeveloper/shoko_ui
+version: 0.0.3
+homepage: https://pub.dev/packages/shoko_theme
+repository: https://github.com/ShoshiDeveloper/shoko_pack
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
