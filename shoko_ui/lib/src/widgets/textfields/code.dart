@@ -5,7 +5,7 @@ import 'package:shoko_ui/shoko_ui.dart';
 enum ShokoUICodeBorderType {externalOutline, underSymbolsBorder}
 
 ///Example: pin, friend code, share code and etc.
-class ShokoUICodeTextField extends StatefulWidget {
+class ShokoCodeTextField extends StatefulWidget {
 
   final int symbolsCount;
   final String? hintSymbol;
@@ -28,7 +28,7 @@ class ShokoUICodeTextField extends StatefulWidget {
   final bool autoNext;
   final bool fillBackground;
 
-  final ShokoUIRadii? radius;
+  final ShokoRadii? radius;
 
   final double? height;
   final double? width;
@@ -36,7 +36,7 @@ class ShokoUICodeTextField extends StatefulWidget {
 
   final CodeTextFieldController? controller;
 
-  const ShokoUICodeTextField({
+  const ShokoCodeTextField({
     super.key,
     required this.symbolsCount, this.hintSymbol,
     this.borderType, this.enableColor, this.disableColor, this.errorColor, this.focusColor,
@@ -49,10 +49,10 @@ class ShokoUICodeTextField extends StatefulWidget {
   });
 
   @override
-  State<ShokoUICodeTextField> createState() => _ShokoUICodeTextFieldState();
+  State<ShokoCodeTextField> createState() => _ShokoCodeTextFieldState();
 }
 
-class _ShokoUICodeTextFieldState extends State<ShokoUICodeTextField> {
+class _ShokoCodeTextFieldState extends State<ShokoCodeTextField> {
   late final List<TextEditingController> controllers = List.generate(widget.symbolsCount, (index) => TextEditingController(text: widget.hintSymbol));
   late final List<FocusNode> focusNodes = List.generate(widget.symbolsCount, (index) => FocusNode());
   late final List<String> codeSymbols = List.generate(widget.symbolsCount, (index) => widget.hintSymbol ?? '');
@@ -61,7 +61,7 @@ class _ShokoUICodeTextFieldState extends State<ShokoUICodeTextField> {
   int? focusIndex;
 
   @override
-  void didUpdateWidget(covariant ShokoUICodeTextField oldWidget) {
+  void didUpdateWidget(covariant ShokoCodeTextField oldWidget) {
 
     for (var i = 0; i < widget.symbolsCount; i++) {
       controllers[i].text = widget.hintSymbol ?? '';
@@ -119,7 +119,7 @@ class _ShokoUICodeTextFieldState extends State<ShokoUICodeTextField> {
     return AnimatedContainer(
       duration: const Duration(seconds: 1),
       decoration: widget.borderType == ShokoUICodeBorderType.externalOutline ? BoxDecoration(
-        borderRadius: widget.radius?.get() ?? ShokoUIRadii.medium.get(),
+        borderRadius: widget.radius?.get() ?? ShokoRadii.medium.get(),
         border: Border.all(
           color: widget.enableColor ?? Colors.black
         )
@@ -170,7 +170,7 @@ class _CodeWidgetSymbol extends StatelessWidget {
   final bool fillBackground;
 
   final Color color;
-  final ShokoUIRadii? radius;
+  final ShokoRadii? radius;
 
   final double height;
   final double width;
@@ -190,7 +190,7 @@ class _CodeWidgetSymbol extends StatelessWidget {
   BoxDecoration? _getDecoration() {
     if (fillBackground) {
       return BoxDecoration(
-        borderRadius: radius?.get() ?? ShokoUIRadii.medium.get(),
+        borderRadius: radius?.get() ?? ShokoRadii.medium.get(),
         color: color
       );
     }

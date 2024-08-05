@@ -15,7 +15,7 @@ enum ButtonWidth {
   final MainAxisSize size;
 }
 
-class ShokoUIButton extends StatelessWidget {
+class ShokoButton extends StatelessWidget {
   final Function()? onTap;
   final Function()? onDoubleTap;
   final Function(bool)? onHover;
@@ -24,37 +24,31 @@ class ShokoUIButton extends StatelessWidget {
   final Color? color;
 
   final bool isOutline;
-  @Deprecated('Not supported now. Will be removed in v0.0.15')
-  final bool isChildAtCenter;
   final bool fullHeight;
   final bool _expanded;
 
   ///We recommend using it for text
   final Widget child;
-  ///We recommend using it for the icon
-  @Deprecated('Not supported now. Will be removed in v0.0.15')
-  final Widget? prefix;
 
-
-  final ShokoUIRadii? radius;
-  final ShokoUIShadow? shadow;
+  final ShokoRadii? radius;
+  final ShokoShadow? shadow;
   final ButtonWidth width;
   final ButtonChildPosition childPosition;
 
-  const ShokoUIButton({super.key,
+  const ShokoButton({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
-    this.color, this.isOutline = false, this.isChildAtCenter = false,
-    required this.child, this.prefix,
+    this.color, this.isOutline = false,
+    required this.child,
     this.radius, this.shadow, this.fullHeight = true,
     this.width = ButtonWidth.max, this.childPosition = ButtonChildPosition.center
   }) : _expanded = false;
 
   
   ///Use only in rows! In columns you will recieve Overflow
-  const ShokoUIButton.expanded({super.key,
+  const ShokoButton.expanded({super.key,
     this.onTap, this.onDoubleTap, this.onHover, this.onLongPress,
-    this.color, this.isOutline = false, this.isChildAtCenter = false,
-    required this.child, this.prefix,
+    this.color, this.isOutline = false,
+    required this.child,
     this.radius, this.shadow, this.fullHeight = true,
     this.width = ButtonWidth.max, this.childPosition = ButtonChildPosition.center
   }) : _expanded = true;
@@ -62,6 +56,8 @@ class ShokoUIButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = context.shokoTheme.buttonTheme;
+    
     return _buildExpended(
       child: GestureDetector(
           onTap: onTap,
@@ -71,12 +67,12 @@ class ShokoUIButton extends StatelessWidget {
             height: fullHeight ? 46 : 38,
             padding: EdgeInsets.symmetric(vertical: fullHeight ? 12 : 8, horizontal: 32),
             decoration: BoxDecoration(
-              color: !isOutline ? color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]) : null,
-              borderRadius: (radius?.get() ?? context.shokoTheme?.buttonTheme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
-              boxShadow: (shadow?.get() ?? context.shokoTheme?.buttonTheme?.shadow?.get()),
+              color: !isOutline ? color ?? theme.color : null,
+              borderRadius: (radius?.get() ?? theme.radius.get()),
+              boxShadow: (shadow?.get() ?? theme.shadow?.get()),
               border: isOutline ? Border.all(
                 width: 1,
-                color: color ?? (context.shokoTheme?.buttonTheme?.color ?? Colors.grey[850]!)
+                color: color ?? theme.color
               ) : null,
             ),
             child: Row(

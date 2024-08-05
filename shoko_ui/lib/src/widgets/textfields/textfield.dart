@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_theme/shoko_theme.dart';
 
-class ShokoUITextField extends StatefulWidget {
+class ShokoTextField extends StatefulWidget {
   
   ///Be auto-dispose when widget disposed
   final TextEditingController controller;
@@ -11,7 +11,7 @@ class ShokoUITextField extends StatefulWidget {
   final bool Function(String value)? validator;
 
   final EdgeInsets? insidePaddings;
-  final ShokoUIRadii? radius;
+  final ShokoRadii? radius;
 
   final bool isEnabled;
   final bool obscureText;
@@ -35,10 +35,10 @@ class ShokoUITextField extends StatefulWidget {
   final int? minSymbols;
   final int? maxSymbols;
   
-  const ShokoUITextField({super.key,
+  const ShokoTextField({super.key,
     required this.controller, this.style,
     this.onChange, this.validator,
-    this.insidePaddings, this.radius = ShokoUIRadii.medium,
+    this.insidePaddings, this.radius = ShokoRadii.medium,
     this.isEnabled = true, this.obscureText = false,
     this.isError = false, this.errorText, this.errorTextStyle,
     this.label, this.labelTextStyle,
@@ -49,10 +49,10 @@ class ShokoUITextField extends StatefulWidget {
   });
 
   @override
-  State<ShokoUITextField> createState() => _ShokoUITextFieldState();
+  State<ShokoTextField> createState() => _ShokoTextFieldState();
 }
 
-class _ShokoUITextFieldState extends State<ShokoUITextField> {
+class _ShokoTextFieldState extends State<ShokoTextField> {
 
   final FocusNode focusNode = FocusNode();
   bool isError = false;
@@ -65,7 +65,7 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
   }
 
   @override
-  void didUpdateWidget(covariant ShokoUITextField oldWidget) {
+  void didUpdateWidget(covariant ShokoTextField oldWidget) {
     setState(() {
       isError = widget.isError;
     });
@@ -80,7 +80,7 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
   }
 
   submit(String value) {
-    if(widget.onChange != null) widget.onChange!(value);
+    widget.onChange?.call(value);
             
     bool validatorResult = true;
     if (widget.validator != null) {
@@ -97,13 +97,13 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
 
   @override
   Widget build(BuildContext context) {
-    final ShokoUIThemeTextField? theme = context.shokoTheme?.textFieldTheme;
+    final ShokoThemeTextField theme = context.shokoTheme.textFieldTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if(widget.label != null) Text(widget.label!, style: (widget.labelTextStyle ?? theme?.labelTextStyle) ?? const TextStyle()),
+        if(widget.label != null) Text(widget.label!, style: (widget.labelTextStyle ?? theme.labelTextStyle) ?? const TextStyle()),
         Focus(
           onFocusChange: (value) {
             !value ? submit(this.value) : setState(() {});
@@ -111,12 +111,12 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 500),
             curve: Curves.ease,
-            padding: (widget.insidePaddings ?? theme?.insidePaddings) ?? const EdgeInsets.all(12),
+            padding: (widget.insidePaddings ?? theme.insidePaddings),
             decoration: BoxDecoration(
-              borderRadius: (widget.radius?.get() ?? theme?.radius?.get()) ?? ShokoUIRadii.medium.get(),
+              borderRadius: widget.radius?.get() ?? theme.radius.get(),
               border: Border.all(
-                width: (widget.borderWidth ?? theme?.borderWidth) ?? 2,
-                color: (focusNode.hasFocus && widget.isEnabled ? (widget.focusColor ?? theme?.focusColor) : (widget.isEnabled ? (isError ? (widget.errorColor ?? theme?.errorColor) : (widget.enableColor ?? theme?.enableColor)) : (widget.disableColor ?? theme?.disableColor))) ??Colors.grey[850]!
+                width: (widget.borderWidth ?? theme.borderWidth),
+                color: focusNode.hasFocus && widget.isEnabled ? (widget.focusColor ?? theme.focusColor) : (widget.isEnabled ? (isError ? (widget.errorColor ?? theme.errorColor) : (widget.enableColor ?? theme.enableColor)) : (widget.disableColor ?? theme.disableColor))
               )
             ),
             child: EditableText(
@@ -132,13 +132,13 @@ class _ShokoUITextFieldState extends State<ShokoUITextField> {
               // max: widget.maxSymbols,
               controller: widget.controller,
               focusNode: focusNode,
-              style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? ((widget.disableColor ?? theme?.disableColor) ?? Colors.grey) : null),
-              cursorColor: theme?.cursorColor ?? Colors.purple,
-              backgroundCursorColor: theme?.backgroundCursorColor ?? Colors.purple
+              style: ((widget.style ?? theme.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? (widget.disableColor ?? theme.disableColor) : null),
+              cursorColor: theme.cursorColor,
+              backgroundCursorColor: Colors.transparent
             )
           )
         ),
-        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme?.errorTextStyle ?? TextStyle(color: widget.errorColor ?? Colors.red),))
+        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme.errorTextStyle ?? TextStyle(color: widget.errorColor ?? theme.errorColor)))
       ]
     );
   }

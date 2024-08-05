@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shoko_ui/shoko_ui.dart';
-import 'package:shoko_theme/shoko_theme.dart';
 
-class ShokoUIModernTextField extends StatefulWidget {
+class ShokoModernTextField extends StatefulWidget {
   
   ///Be auto-dispose when widget disposed
   final TextEditingController controller;
@@ -37,7 +36,7 @@ class ShokoUIModernTextField extends StatefulWidget {
 
   final List<TextInputFormatter>? inputFormatters;
   
-  const ShokoUIModernTextField({super.key,
+  const ShokoModernTextField({super.key,
     required this.controller, this.style, this.isOutline,
     this.onChange, this.validator,
     this.isEnabled = true,
@@ -51,10 +50,10 @@ class ShokoUIModernTextField extends StatefulWidget {
   });
 
   @override
-  State<ShokoUIModernTextField> createState() => _ShokoUIModernTextFieldState();
+  State<ShokoModernTextField> createState() => _ShokoModernTextFieldState();
 }
 
-class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
+class _ShokoModernTextFieldState extends State<ShokoModernTextField> {
 
   final FocusNode focusNode = FocusNode();
   bool isError = false;
@@ -67,7 +66,7 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
   }
 
   @override
-  void didUpdateWidget(covariant ShokoUIModernTextField oldWidget) {
+  void didUpdateWidget(covariant ShokoModernTextField oldWidget) {
     setState(() {
       isError = widget.isError;
     });
@@ -82,7 +81,7 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
   }
 
   submit(String value) {
-    if(widget.onChange != null) widget.onChange!(value);
+    widget.onChange?.call(value);
     
     bool validatorResult = true;
     if (widget.validator != null) {
@@ -95,27 +94,27 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
   }
 
   Color getWidgetColor() {
-    final ShokoUIThemeTextField? theme = context.shokoTheme?.textFieldTheme;
+    final ShokoThemeTextField theme = context.shokoTheme.textFieldTheme;
     
     if (!widget.isEnabled) {//if code widget is disabled
-      return (widget.disableColor ?? theme?.disableColor) ?? Colors.grey[300]!;
+      return widget.disableColor ?? theme.disableColor;
     }
     //if code widget enabled and not focused
     if (focusNode.hasFocus) {
-      return widget.focusColor ?? theme?.focusColor ?? Colors.grey[350]!;
+      return widget.focusColor ?? theme.focusColor;
     }
 
     if (widget.isError) {
-      return widget.errorColor ?? theme?.errorColor ?? Colors.red;
+      return widget.errorColor ?? theme.errorColor;
     }
 
-    return widget.enableColor ?? theme?.enableColor ?? Colors.grey[200]!;
+    return widget.enableColor ?? theme.enableColor;
   }
 
 
   @override
   Widget build(BuildContext context) {
-    final ShokoUIThemeTextField? theme = context.shokoTheme?.textFieldTheme;
+    final ShokoThemeTextField theme = context.shokoTheme.textFieldTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,9 +128,9 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
             duration: const Duration(milliseconds: 500),
             curve: Curves.ease,
             decoration: BoxDecoration(
-              color: (widget.isOutline ?? theme?.isOutline ?? true) ? null : getWidgetColor(),
-              borderRadius: ShokoUIRadii.mediumPlus.get(),
-              border: (widget.isOutline ?? theme?.isOutline ?? true) ? Border.all(
+              color: widget.isOutline ?? theme.isOutline ? null : getWidgetColor(),
+              borderRadius: ShokoRadii.mediumPlus.get(),
+              border: widget.isOutline ?? theme.isOutline ? Border.all(
                 width: 1,
                 color: getWidgetColor()
               ) : null
@@ -145,7 +144,7 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
                     onChanged: (value) => this.value = value,
                     controller: widget.controller,
                     focusNode: focusNode,
-                    cursorColor: theme?.cursorColor,
+                    cursorColor: theme.cursorColor,
                     readOnly: !widget.isEnabled,
                     autocorrect: true,
                     enableSuggestions: true,
@@ -159,10 +158,10 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
                       counterText: '',
                       contentPadding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
                       label: (widget.label != null) ? Text(widget.label!) : null,
-                      labelStyle: (widget.labelTextStyle ?? theme?.labelTextStyle ?? TextStyle(color: focusNode.hasFocus ? widget.focusColor : (widget.isEnabled ? isError ? widget.errorColor ?? theme?.errorColor: (widget.enableColor ?? theme?.enableColor) : widget.disableColor ?? theme?.disableColor ?? Colors.grey[400]))),
+                      labelStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? TextStyle(color: focusNode.hasFocus ? widget.focusColor : (widget.isEnabled ? isError ? widget.errorColor ?? theme.errorColor: (widget.enableColor ?? theme.enableColor) : widget.disableColor ?? theme.disableColor))),
                       border: InputBorder.none
                     ),
-                    style: ((widget.style ?? theme?.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? (widget.disableColor ?? theme?.disableColor ?? Colors.grey[400]) : null),
+                    style: ((widget.style ?? theme.style) ?? const TextStyle(color: Colors.black, fontSize: 16)).copyWith(color: !widget.isEnabled ? (widget.disableColor ?? theme.disableColor) : null),
                   ),
                 ),
                 if(widget.suffix != null) ... [
@@ -173,7 +172,7 @@ class _ShokoUIModernTextFieldState extends State<ShokoUIModernTextField> {
             )
           )
         ),
-        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme?.errorTextStyle ?? TextStyle(color: widget.errorColor ?? Colors.red),))
+        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme.errorTextStyle ?? TextStyle(color: widget.errorColor ?? theme.errorColor),))
       ]
     );
   }

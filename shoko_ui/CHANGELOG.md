@@ -1,3 +1,9 @@
+## 0.0.17
+**New**:
+- Get last version by shoko_theme
+- Global refactoring
+- Update some logic in switch
+- Global widgets rename 
 ## 0.0.16
 Theme module was separated
 ## 0.0.15
