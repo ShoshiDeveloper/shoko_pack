@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-enum ShokoUIRadii {
+enum ShokoRadii {
   ///It is 8
   small,
   ///It is 12
@@ -13,7 +13,7 @@ enum ShokoUIRadii {
   largePlus
 }
 
-extension ShokoUIRadiiExtension on ShokoUIRadii {
+extension ShokoRadiiExtension on ShokoRadii {
   BorderRadius get() {
     switch (name) {
       case "small":

@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 class ShokoUIThemeSwitch {
-  final Color? thumbColor;
+  final Color thumbColor;
   final Color? inactiveThumbColor;
   final Color? backgroundColor;
   final Color? inactiveBackgroundColor;
@@ -14,8 +14,14 @@ class ShokoUIThemeSwitch {
   final List<BoxShadow>? thumbShadow;
 
   const ShokoUIThemeSwitch({
-    this.thumbColor, this.inactiveThumbColor, this.backgroundColor, this.inactiveBackgroundColor, this.outlineColor, this.inactiveOutlineColor,
-    this.enableOutline, this.insidePadding,
+    this.thumbColor = const Color.fromRGBO(255, 255, 255, 1),
+    this.backgroundColor = const Color.fromRGBO(126, 127, 251, 1),
+    this.outlineColor = const Color.fromRGBO(126, 127, 251, 1),
+    this.inactiveThumbColor = const Color.fromRGBO(255, 255, 255, 1),
+    this.inactiveBackgroundColor = const Color.fromRGBO(225, 227, 230, 1),
+    this.inactiveOutlineColor = const Color.fromRGBO(225, 227, 230, 1),
+    this.enableOutline = false,
+    this.insidePadding = 2,
     this.thumbShadow
   });
 }

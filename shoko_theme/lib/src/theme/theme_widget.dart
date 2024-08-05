@@ -1,15 +1,25 @@
 import 'package:flutter/widgets.dart';
 import 'package:shoko_theme/shoko_theme.dart';
-import 'package:shoko_theme/src/theme/context_extension.dart';
+// import 'package:shoko_theme/src/theme/context_extension.dart';
 import 'package:shoko_theme/src/theme/themes/shoko_theme_dialog.dart';
 import 'package:shoko_theme/src/theme/themes/shoko_theme_mbs.dart';
 
 ///Widget for set ui theme
 ///Preferably, the entire application should be wrapped so that the theme is accessible from anywhere
-class ShokoUIThemeWidget extends StatelessWidget {
+class ShokoThemeWidget extends StatelessWidget {
   final ShokoUITheme shokoUITheme;
   final Widget child;
-  const ShokoUIThemeWidget({super.key, required this.shokoUITheme, required this.child});
+  const ShokoThemeWidget({super.key, required this.shokoUITheme, required this.child});
+
+  //soon
+  // @protected
+  // void _rebuildAllChildren(BuildContext context) {
+  //   void rebuild(Element el) {
+  //     el.markNeedsBuild();
+  //     el.visitChildren(rebuild);
+  //   }
+  //   (context as Element).visitChildren(rebuild);
+  // }
 
   @override
   Widget build(BuildContext context) {

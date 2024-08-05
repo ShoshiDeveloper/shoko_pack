@@ -3,8 +3,12 @@ import 'package:shoko_theme/shoko_theme.dart';
 
 class ShokoUIThemeButton {
   final Color? color;
-  final ShokoUIRadii? radius;
-  final ShokoUIShadow? shadow;
+  final ShokoRadii? radius;
+  final ShokoShadow? shadow;
 
-  const ShokoUIThemeButton({this.color, this.radius, this.shadow});
+  const ShokoUIThemeButton({
+    this.color = const Color.fromRGBO(126, 127, 251, 1),
+    this.radius = ShokoRadii.mediumPlus,
+    this.shadow
+  });
 }

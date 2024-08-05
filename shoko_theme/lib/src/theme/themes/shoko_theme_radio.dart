@@ -5,7 +5,12 @@ class ShokoUIThemeRadio {
   final Color? activeColor;
   final Color? inactiveColor;
   final Color? markColor;
-  final ShokoUIRadii? radius;
+  final ShokoRadii? radius;
 
-  const ShokoUIThemeRadio({this.activeColor, this.inactiveColor, this.markColor, this.radius});
+  const ShokoUIThemeRadio({
+    this.activeColor = const Color.fromRGBO(126, 127, 251, 1),
+    this.inactiveColor = const Color.fromRGBO(255, 255, 255, 1),
+    this.markColor = const Color.fromRGBO(255, 255, 255, 1),
+    this.radius = ShokoRadii.small
+  });
 }

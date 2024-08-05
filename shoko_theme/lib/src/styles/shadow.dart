@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 
-enum ShokoUIShadow {
+enum ShokoShadow {
   small,
   medium,
   large,
 }
 
-extension ShokoUIShadowsExtension on ShokoUIShadow {
+extension ShokoShadowsExtension on ShokoShadow {
   List<BoxShadow> get() {
     switch (name) {
       case "medium":
