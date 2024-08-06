@@ -1,3 +1,6 @@
+## 0.0.17+1
+**New**:
+- Add maxLines in modern textfield
 ## 0.0.17
 **New**:
 - Get last version by shoko_theme
