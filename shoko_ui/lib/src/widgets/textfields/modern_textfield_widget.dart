@@ -33,6 +33,7 @@ class ShokoModernTextField extends StatefulWidget {
 
   final int? minSymbols;
   final int? maxSymbols;
+  final int? maxLines;
 
   final Widget? suffix;
 
@@ -48,7 +49,8 @@ class ShokoModernTextField extends StatefulWidget {
     this.keyboardType,
     this.maxSymbols, this.minSymbols, this.obscureText = false,
     this.suffix,
-    this.inputFormatters
+    this.inputFormatters,
+    this.maxLines
   });
 
   @override
@@ -154,7 +156,7 @@ class _ShokoModernTextFieldState extends State<ShokoModernTextField> {
                     inputFormatters: widget.inputFormatters,
                     keyboardType: widget.keyboardType,
                     maxLength: widget.maxSymbols,
-                    maxLines: 1,
+                    maxLines: widget.maxLines ?? 1,
                     decoration: InputDecoration(
                       enabled: widget.isEnabled,
                       counterText: '',
