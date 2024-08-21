@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoko_theme/shoko_theme.dart';
+import 'package:shoko_ui/src/theme/context_theme_extension.dart';
+import 'package:shoko_ui/src/widgets/switch/shoko_theme_switch.dart';
 
 enum ShokoSwitchType {long, short}
 
@@ -42,7 +43,7 @@ class _ShokoSwitchState extends State<ShokoSwitch> {
   late Color backgroundColor;
   late Color outlineColor;
 
-  late ShokoThemeSwitch theme;
+  late SSwitchTheme theme;
 
   final double divider = 1.6;
   double get difference => widget.width - (widget.width / divider);

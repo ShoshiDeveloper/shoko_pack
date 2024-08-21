@@ -1,3 +1,7 @@
+## 1.0.0
+I've rethought the package approach.
+Now it's not just a UI Kit with the export of ShokoBases and ShokoTheme, now it's a UI library that will contain all this in one package.
+
 ## 0.0.17
 **New**:
 - Get last version by shoko_theme

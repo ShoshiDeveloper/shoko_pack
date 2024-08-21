@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shoko_theme/shoko_theme.dart';
+import 'package:shoko_ui/src/theme/styles/radius.dart';
+import 'package:shoko_ui/src/theme/context_theme_extension.dart';
 
 enum ShokoRadioChildPosition {left, right}
 
@@ -13,7 +14,7 @@ class ShokoRadio extends StatelessWidget {
   final Color? inactiveColor;
   final Color? activeColor;
   final Color? markColor;
-  final ShokoRadii? radius;
+  final SRadii? radius;
 
   final ShokoRadioChildPosition childPosition;
   final MainAxisAlignment mainAxisAlignment;
@@ -21,7 +22,7 @@ class ShokoRadio extends StatelessWidget {
   const ShokoRadio({super.key,
     required this.value, this.onChange,
     this.child,
-    this.size = 32, this.inactiveColor, this.markColor, this.activeColor, this.radius = ShokoRadii.medium,
+    this.size = 32, this.inactiveColor, this.markColor, this.activeColor, this.radius = SRadii.medium,
     this.childPosition = ShokoRadioChildPosition.right, this.mainAxisAlignment = MainAxisAlignment.start
   });
 
