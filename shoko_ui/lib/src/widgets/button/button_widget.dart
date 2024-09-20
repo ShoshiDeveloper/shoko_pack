@@ -57,7 +57,7 @@ class _SButtonState extends State<SButton> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.shokoTheme.buttonTheme;
+    final theme = context.theme.buttonTheme;
     
     return GestureDetector(
       onTap: widget.onTap,

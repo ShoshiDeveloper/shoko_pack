@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shoko_ui/src/theme/context_theme_extension.dart';
+import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 import 'package:shoko_ui/src/widgets/switch/shoko_theme_switch.dart';
 
 enum ShokoSwitchType {long, short}
@@ -56,7 +56,7 @@ class _ShokoSwitchState extends State<ShokoSwitch> {
 
   @override
   void didUpdateWidget(covariant ShokoSwitch oldWidget) {
-    theme = context.shokoTheme.switchTheme;
+    theme = context.theme.switchTheme;
     setState(() {
       value = widget.value;
     });
@@ -65,7 +65,7 @@ class _ShokoSwitchState extends State<ShokoSwitch> {
 
   @override
   void initState() {
-    theme = context.shokoTheme.switchTheme;
+    theme = context.theme.switchTheme;
     value = widget.value;
     setColors();
     super.initState();
@@ -103,7 +103,7 @@ class _ShokoSwitchState extends State<ShokoSwitch> {
           ),
           decoration: BoxDecoration(
             color: thumbColor,
-            boxShadow: widget.thumbShadow ?? context.shokoTheme.switchTheme.thumbShadow,
+            boxShadow: widget.thumbShadow ?? context.theme.switchTheme.thumbShadow,
             borderRadius: BorderRadius.circular(widget.width)
           ),
           duration: const Duration(milliseconds: 250),

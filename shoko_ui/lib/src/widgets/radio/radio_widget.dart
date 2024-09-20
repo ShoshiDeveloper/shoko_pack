@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/src/theme/styles/radius.dart';
-import 'package:shoko_ui/src/theme/context_theme_extension.dart';
+import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 
 enum ShokoRadioChildPosition {left, right}
 
@@ -42,14 +42,14 @@ class ShokoRadio extends StatelessWidget {
             height: size,
             width: size,
             decoration: BoxDecoration(
-              color: value ? (activeColor ?? context.shokoTheme.radioTheme.activeColor) : null,
-              borderRadius: (radius?.get() ?? context.shokoTheme.buttonTheme.radius.get()),
+              color: value ? (activeColor ?? context.theme.radioTheme.activeColor) : null,
+              borderRadius: (radius?.get() ?? context.theme.buttonTheme.radius.get()),
               border: !value ? Border.all(
-                color: inactiveColor ?? context.shokoTheme.radioTheme.inactiveColor,
+                color: inactiveColor ?? context.theme.radioTheme.inactiveColor,
                 width: 2
               ) : null
             ),
-            child: value ? Icon(Icons.check_rounded, size: size - 4, color: markColor ?? context.shokoTheme.radioTheme.markColor) : null,
+            child: value ? Icon(Icons.check_rounded, size: size - 4, color: markColor ?? context.theme.radioTheme.markColor) : null,
           )
         ),
         if (childPosition == ShokoRadioChildPosition.right) ... [

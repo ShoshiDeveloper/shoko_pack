@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 import 'package:shoko_ui/src/theme/styles/radius.dart';
-import 'package:shoko_ui/src/theme/context_theme_extension.dart';
+import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 
 class ShokoModernTextField extends StatefulWidget {
   
@@ -98,7 +98,7 @@ class _ShokoModernTextFieldState extends State<ShokoModernTextField> {
   }
 
   Color getWidgetColor() {
-    final theme = context.shokoTheme.textFieldTheme;
+    final theme = context.theme.textFieldTheme;
     
     if (!widget.isEnabled) {//if code widget is disabled
       return widget.disableColor ?? theme.disableColor;
@@ -118,7 +118,7 @@ class _ShokoModernTextFieldState extends State<ShokoModernTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.shokoTheme.textFieldTheme;
+    final theme = context.theme.textFieldTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

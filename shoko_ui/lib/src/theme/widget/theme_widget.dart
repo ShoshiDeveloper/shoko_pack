@@ -1,5 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:shoko_ui/src/theme/context_theme_extension.dart';
+import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
+import 'package:shoko_ui/src/theme/general_themes/background_theme.dart';
+import 'package:shoko_ui/src/theme/general_themes/content_theme.dart';
+import 'package:shoko_ui/src/theme/styles/content_styles.dart';
 import 'package:shoko_ui/src/widgets/button/button_theme.dart';
 import 'package:shoko_ui/src/widgets/radio/shoko_theme_radio.dart';
 import 'package:shoko_ui/src/widgets/switch/shoko_theme_switch.dart';
@@ -12,16 +15,6 @@ class SThemeWidget extends StatelessWidget {
   final Widget child;
   const SThemeWidget({super.key, required this.shokoUITheme, required this.child});
 
-  //soon
-  // @protected
-  // void _rebuildAllChildren(BuildContext context) {
-  //   void rebuild(Element el) {
-  //     el.markNeedsBuild();
-  //     el.visitChildren(rebuild);
-  //   }
-  //   (context as Element).visitChildren(rebuild);
-  // }
-
   @override
   Widget build(BuildContext context) {
     context.initTheme(shokoUITheme);
@@ -31,10 +24,17 @@ class SThemeWidget extends StatelessWidget {
 
 ///A class that stores global theme settings
 class STheme {
+  //Styles of widgets
   final SButtonTheme buttonTheme;
   final SRadioTheme radioTheme;
   final STextFieldTheme textFieldTheme;
   final SSwitchTheme switchTheme;
+
+  final SBackgroundTheme backgroundTheme;
+  final SContentTheme contentTheme;
+
+  final SContentStyles contentStyles;
+
 
   // final ShokoDialogTheme dialogTheme;
   // final ShokoMBSTheme mbsTheme;
@@ -44,6 +44,10 @@ class STheme {
     this.radioTheme = const SRadioTheme(),
     this.textFieldTheme = const STextFieldTheme(),
     this.switchTheme = const SSwitchTheme(),
+    this.backgroundTheme = const SBackgroundTheme.basic(),
+    this.contentTheme = const SContentTheme.basic(),
+    
+    this.contentStyles = const SContentStyles()
     // this.dialogTheme = const ShokoDialogTheme(),
     // this.mbsTheme = const ShokoMBSTheme()
   });

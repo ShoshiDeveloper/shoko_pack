@@ -150,10 +150,10 @@ packages:
   shoko_ui:
     dependency: "direct main"
     description:
-      path: ".."
-      relative: true
+      path: "C:\\projects\\packages\\shoko_ui\\shoko_ui"
+      relative: false
     source: path
-    version: "0.0.17"
+    version: "1.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
