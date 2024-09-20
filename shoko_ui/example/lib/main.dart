@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
+const whiteTheme = STheme(
+  switchTheme: SSwitchTheme(
+    backgroundColor: Colors.black
+  )
+);
+
+
+const darkTheme = STheme(
+  switchTheme: SSwitchTheme(
+    backgroundColor: Colors.red
+  )
+);
+
 void main() {
   runApp(const MyApp());
 }
@@ -33,6 +46,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   bool state = false;
 
+  void onChanged(bool value) {
+    setState(() {
+      state = value;
+    });
+      context.changeTheme(state ? whiteTheme : darkTheme);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,36 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             MyWidget(),
-            Container(
-              color: context.theme.buttonTheme.color,
-              height: 65,
-              width: 25,
-            ),
-            SButton.expanded(
-              onTap: () {
-                if(state) {
-                  context.changeTheme(const STheme(
-                    backgroundTheme: SBackgroundTheme(primary: Colors.indigo, secondary: Colors.black, tertiary: Colors.black, brand: Colors.black, brandLight: Colors.black, success: Colors.black, successLight: Colors.black, alert: Colors.black, alertLight: Color.fromRGBO(1, 1, 1, 1)),
-                    contentTheme: SContentTheme(primary: Colors.black, secondary: Colors.black, tertiary: Colors.black, brand: Colors.black, success: Colors.black, alert: Colors.black),
-                    buttonTheme: SButtonTheme(
-                      color: Colors.white
-                    )
-                  ));
-                } else {
-                  context.changeTheme(const STheme(
-                    backgroundTheme: SBackgroundTheme(primary: Colors.lightBlue, secondary: Colors.black, tertiary: Colors.black, brand: Colors.black, brandLight: Colors.black, success: Colors.black, successLight: Colors.black, alert: Colors.black, alertLight: Color.fromRGBO(1, 1, 1, 1)),
-                    contentTheme: SContentTheme(primary: Colors.white, secondary: Colors.black, tertiary: Colors.black, brand: Colors.black, success: Colors.black, alert: Colors.black),
-                    buttonTheme: SButtonTheme(
-                      color: Colors.black
-                    )
-                  ));
-                }
-
-                state = !state;
-                print(context.theme.contentTheme.primary);
-              },
-              child: Text('Create project', style: context.theme.contentStyles.body2(color: context.theme.contentTheme.primary))
-            ),
+            Switch(value: state, onChanged: onChanged),
+            SSwitch(value: state, width: 50, insidePadding: 4, onChange: onChanged),
           ],
         )
       )
@@ -85,7 +77,7 @@ class MyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.theme.buttonTheme.color,
+      color: context.theme.switchTheme.backgroundColor,
       height: 345,
       width: 25,
     );

@@ -5,7 +5,7 @@ import 'package:shoko_ui/src/theme/general_themes/content_theme.dart';
 import 'package:shoko_ui/src/theme/styles/content_styles.dart';
 import 'package:shoko_ui/src/widgets/button/button_theme.dart';
 import 'package:shoko_ui/src/widgets/radio/shoko_theme_radio.dart';
-import 'package:shoko_ui/src/widgets/switch/shoko_theme_switch.dart';
+import 'package:shoko_ui/src/widgets/switch/switch_theme.dart';
 import 'package:shoko_ui/src/widgets/textfields/shoko_theme_textfield.dart';
 
 ///Widget for set ui theme

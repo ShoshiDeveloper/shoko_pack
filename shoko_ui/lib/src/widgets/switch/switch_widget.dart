@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
-import 'package:shoko_ui/src/widgets/switch/shoko_theme_switch.dart';
+import 'package:shoko_ui/src/widgets/switch/switch_theme.dart';
 
-enum ShokoSwitchType {long, short}
-
-class ShokoSwitch extends StatefulWidget {
+class SSwitch extends StatefulWidget {
   final Function(bool newValue)? onChange;
   
   final bool value;
@@ -17,64 +15,42 @@ class ShokoSwitch extends StatefulWidget {
   final Color? outlineColor;
   final Color? inactiveOutlineColor;
   
-  final ShokoSwitchType switchType;
 
   final List<BoxShadow>? thumbShadow;
 
   final bool? enableOutline;
   final double? insidePadding;
 
-  const ShokoSwitch({super.key,
+  const SSwitch({super.key,
     required this.value, this.onChange, this.width = 64,
     this.thumbColor, this.backgroundColor, this.outlineColor, this.inactiveThumbColor, this.inactiveBackgroundColor, this.inactiveOutlineColor,
-    this.switchType = ShokoSwitchType.short,
     this.enableOutline, this.insidePadding,
     this.thumbShadow
   });
 
   @override
-  State<ShokoSwitch> createState() => _ShokoSwitchState();
+  State<SSwitch> createState() => _SSwitchState();
 }
 
-class _ShokoSwitchState extends State<ShokoSwitch> {
-  late bool value;
+class _SSwitchState extends State<SSwitch> {
+  late bool value = widget.value;
 
-  late Color thumbColor;
-  late Color backgroundColor;
-  late Color outlineColor;
+  Color get thumbColor => value ? ((widget.thumbColor ?? theme.thumbColor)) : ((widget.inactiveThumbColor ?? theme.inactiveThumbColor));
+  Color get backgroundColor => value ? ((widget.backgroundColor ?? theme.backgroundColor)) : ((widget.inactiveBackgroundColor ?? theme.inactiveBackgroundColor));
+  Color get outlineColor => value ? ((widget.outlineColor ?? theme.outlineColor)) : ((widget.inactiveOutlineColor ?? theme.inactiveOutlineColor));
 
-  late SSwitchTheme theme;
+  late SSwitchTheme theme = context.theme.switchTheme;
 
   final double divider = 1.6;
   double get difference => widget.width - (widget.width / divider);
 
-  setColors() {
-    thumbColor = (value ? ((widget.thumbColor ?? theme.thumbColor)) : ((widget.inactiveThumbColor ?? theme.inactiveThumbColor)));
-    backgroundColor = (value ? ((widget.backgroundColor ?? theme.backgroundColor)) : ((widget.inactiveBackgroundColor ?? theme.inactiveBackgroundColor)));
-    outlineColor = (value ? ((widget.outlineColor ?? theme.outlineColor)) : ((widget.inactiveOutlineColor ?? theme.inactiveOutlineColor)));
-  }
-
   @override
-  void didUpdateWidget(covariant ShokoSwitch oldWidget) {
-    theme = context.theme.switchTheme;
+  void didUpdateWidget(covariant SSwitch oldWidget) {
     setState(() {
       value = widget.value;
+      theme = context.theme.switchTheme;
     });
     super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void initState() {
-    theme = context.theme.switchTheme;
-    value = widget.value;
-    setColors();
-    super.initState();
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-    setColors();
   }
 
   @override
@@ -84,7 +60,9 @@ class _ShokoSwitchState extends State<ShokoSwitch> {
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
       onTap: () => widget.onChange?.call(!value),
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeInSine,
         width: widget.width,
         height: widget.width / divider,
         padding: EdgeInsets.all(widget.insidePadding ?? theme.insidePadding),
